@@ -1,2 +1,2 @@
-# CPP_Projects
+# CppProjects
 C++ Script repo 
