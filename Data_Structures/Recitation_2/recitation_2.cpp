@@ -6,7 +6,7 @@ using namespace std;
 
 int *getBiggerArray(int *oldArray, int oldCapacity)
 {
-    int ∗newArray = new int[oldCapacity]// dynamically allocate an array of size 2 * oldCapacity
+    int ∗newArray = new int[2 * oldCapacity];// dynamically allocate an array of size 2 * oldCapacity
 
     // copy all data from oldArray to newArray
     delete [] oldArray;
@@ -22,10 +22,10 @@ int main (int argc, char ∗argv[])
 
     string filename = argv[1];
     string line;
-    fstream myFile(filename)// open the filename that was the first command-line argument
+    fstream myFile(filename);// open the filename that was the first command-line argument
 
     int capacity = 10;
-    int *array = new int[capacity]// dynamically allocate array with initial capacity
+    int *array = new int[capacity];// dynamically allocate array with initial capacity
     int numberOfLines = 0;
     for(getline(myFile, line))
     {
