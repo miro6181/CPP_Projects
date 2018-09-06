@@ -9,7 +9,7 @@ Professor Gupta */
 
 using namespace std;
 
-int insertIntoSortedArray(int myArray[], int numEntries, int newValue);
+//int insertIntoSortedArray(int myArray[], int numEntries, int newValue);
 
 int main(char useFile)
 {
