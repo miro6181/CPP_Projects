@@ -8,7 +8,10 @@ Professor Gupta */
 
 using namespace std;
 
-//int insertIntoSortedArray(int myArray[], int numEntries, int newValue);
+int insertIntoSortedArray(int myArray[], int numEntries, int newValue)
+{
+
+}
 
 int main(int argc, char *argv[])
 {
@@ -16,15 +19,22 @@ int main(int argc, char *argv[])
   {
     ifstream myFile(argv[1]);
 
+    string myArray[100];
+
     if (myFile.is_open())
     {
-      cout << "File open successful. It contains: " << endl;
+      cout << "File open successful." << endl;
       string line;
       int counter = 0;
 
       while (getline(myFile, line))
       {
-        cout << line << endl;
+        for(int i = 0; i < 1; i++)
+        {
+          myArray[i] = line;
+          cout << myArray[i] << endl;
+        }
+        //cout << line << endl;
 
         stringstream ss;
         ss << line;
