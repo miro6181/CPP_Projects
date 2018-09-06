@@ -5,45 +5,42 @@ Professor Gupta */
 #include <iostream>
 #include <sstream>
 #include <fstream>
-#include <vector>
 
 using namespace std;
 
 //int insertIntoSortedArray(int myArray[], int numEntries, int newValue);
 
-int main(char useFile)
+int main(int argc, char *argv[])
 {
-  // string useFile;
-  // cout << "Input a file to read from: ";
-  // cin >> useFile;
-
-  ifstream myFile(useFile);
-
-  if (myFile.is_open())
+  if(argc == 2)
   {
-    cout << "File open successful. It contains: " << endl;
-    string line;
-    int counter = 0;
-    //vector<int> numbers;
+    ifstream myFile(argv[1]);
 
-    while (getline(myFile, line))
+    if (myFile.is_open())
     {
-      cout << line << endl;
+      cout << "File open successful. It contains: " << endl;
+      string line;
+      int counter = 0;
 
-      stringstream ss;
-      ss << line;
+      while (getline(myFile, line))
+      {
+        cout << line << endl;
 
-      //numbers.push_back(line);
-      //cout << numbers << endl;
-      counter++;
+        stringstream ss;
+        ss << line;
+
+        counter++;
+      }
+
+      cout <<"Finished reading file. Closing now..." << endl;
+      myFile.close();
+
     }
+    else
+      cout << "File open failed." << endl;
 
-    cout <<"Finished reading file. Closing now..." << endl;
-    myFile.close();
-
+    return 0;
   }
   else
-    cout << "File open failed." << endl;
-
-  return 0;
+    cout << "Program Failed. Incorrect number of arguments." << endl;
 }
