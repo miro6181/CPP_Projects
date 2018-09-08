@@ -6,9 +6,12 @@ using namespace std;
 
 int *getBiggerArray(int *oldArray, int oldCapacity)
 {
-    int ∗newArray = new int[2 * oldCapacity];// dynamically allocate an array of size 2 * oldCapacity
+    int ∗newArray = new int[2 * oldCapacity]; // dynamically allocate an array of size 2 * oldCapacity
 
-    // copy all data from oldArray to newArray
+    for(int i = 0; i < oldCapacity; i++)
+    {
+      *newArray[i] = *oldArray[i]; // copy all data from oldArray to newArray
+    }
     delete [] oldArray;
     return newArray;
 }
@@ -34,6 +37,6 @@ int main (int argc, char ∗argv[])
             array = getBiggerArray(array, capacity);
             capacity = 2 * capacity;
         }
-        // add the number in the line into the array
+        array.push_back(line); // add the number in the line into the array
     }
 }
