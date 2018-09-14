@@ -183,9 +183,9 @@ bool LinkedList::deleteAtIndex(int n)
     }
     prev->next = pres->next;
     delete pres;
-}
-  isDeleted = 1;
-  return isDeleted;
+		isDeleted = 1;
+		return isDeleted;
+	}
 }
 
 bool LinkedList::deleteAtTail()
