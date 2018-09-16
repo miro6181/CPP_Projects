@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <sstream>
 
 using namespace std;
 
@@ -9,58 +8,94 @@ struct wordItem {
   int count;
 };
 
-//Function Prototypes
-void​ ​getStopWords​(​char​ *ignoreWordFileName, ​string​ ignoreWords[]);
-void​ ​arraySort​(wordItem ​list​[], ​int​ length);
-void​ ​printTopN​(wordItem wordItemList[], ​int​ topN);
-bool​ ​isStopWord​(​string​ word, ​string​ ignoreWords[]);
-int​ ​getTotalNumberNonStopWords​(wordItem ​list​[], ​int​ length);
-
 //Function Implementations
-void​ ​getStopWords​(​char​ *ignoreWordFileName, ​string​ ignoreWords[]) {
-  ifstream stopWords(ignoreWordFileName);
-  if(!stopWords.is_open()) {
-    cout << "Failed to open text file." << endl;
+void getStopWords(char* ignoreWordFileName, string ignoreWords[]){
+  ifstream wordStream;
+  string line;
+  int i = 0;
+
+  wordStream.open(ignoreWordFileName);
+  while (getline(wordStream, line)){
+    ignoreWords[i] = line;
+    i++;
   }
-  else {
-    string line;
-    while(getline(stopWords, line)) {
-      stringstream ss;
-      ss >> line;
-      cout << line << endl;
+}
+
+void arraySort(wordItem list[], int length){
+    bool sorted = false;
+    for (int j = 0; j < 20; j++){
+        for (int i = 0; i < length; i++){
+            int p = list[i].count;
+            int q = list[i+1].count;
+            wordItem a = list[i];
+            wordItem b = list[i+1];
+
+            if (q > p){
+                list[i] = b;
+                list[i+1] = a;
+                i = 0;
+            }
+        }
+    }
+}
+
+void printTopN(wordItem wordItemList[], int topN){
+    for (int i = 0; i < topN; i++){
+        cout << wordItemList[i].count << " - " << wordItemList[i].word << endl;
+    }
+    cout << "#" << endl;
+}
+
+bool isStopWord(string word, string ignoreWords[]){
+  for (int i = 0; i < 50; i++){
+    if (word == ignoreWords[i]){
+      return true;
     }
   }
+  return false;
 }
 
-void​ ​arraySort​(wordItem ​list​[], ​int​ length) {
-  for(int i = 0; i < length; i++) {
-
-  }
-}
-
-void​ ​printTopN​(wordItem wordItemList[], ​int​ topN) {
-
-}
-
-bool​ ​isStopWord​(​string​ word, ​string​ ignoreWords[]) {
-  bool found = (find(ignoredWords.begin(), ignoreWords.end(), word) != ignoreWords.end());
-  for(int i = 0; i < ignoreWords; i++){
-    if(word == ignoreWords[i]) {
-      return 0;
+int getTotalNumberNonStopWords(wordItem list[], int length){
+    int sum = 0;
+    for (int i = 0; i <= length; i++){
+        sum = sum + list[i].count;
     }
-  }
+    return sum;
 }
 
-int​ ​getTotalNumberNonStopWords​(wordItem ​list​[], ​int​ length) {
+int* getBiggerArray(int *oldArray, int oldCap){
+  int* newArray = new int[2*oldCap];
 
+  for (int i = 0; i < oldCap; i++){
+    int j = i + oldCap;
+    newArray[j] = oldArray[i];
+  }
+  delete [] oldArray;
+  return newArray;
 }
 
 
 int main(int argc, char *argv[]) {
-  if(argc != 3) {
+  if(argc != 4) {
     cout << "Invalid number of arguments." << endl;
   }
   else {
-    //Execute program
+    string ignoreArray[50];
+    string *mainArray[] = new string;
+    getStopWords(argv[3], ignoreArray);
+
+    ifstream mainFile;
+    string word;
+
+    mainFile.open(argv[2]);
+
+    while(getline(mainFile, word, ',')) {
+      if(isStopWord(word, ignoreArray)) {
+        NULL;
+      }
+      else {
+        
+      }
+    }
   }
 }
