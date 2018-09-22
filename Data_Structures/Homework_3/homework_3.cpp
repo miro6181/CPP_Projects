@@ -153,10 +153,18 @@ city* handleUserInput(city *head)
  * @param cityName: name of the new city
  * @return: pointer to first node in list
  */
+ // NOT DONE
 city* addCity(city *head, city *previous, string cityName )
 {
   // Only print this if previous is not NULL
-  cout << "prev: " << previous->name << " new: " << cityName << endl;
+  if(previous == NULL)
+  {
+    cout << "prev: " << previous->name << " new: " << cityName << endl;
+  }
+  else
+  {
+
+  }
   return head;
 }
 
@@ -168,6 +176,7 @@ city* addCity(city *head, city *previous, string cityName )
  * @return: pointer to node of cityName, or NULL if not found
  * @see addCity, deleteCity
  */
+ // NOT DONE
 city *searchNetwork(city *head, string cityName)
 {
   return head;
@@ -178,10 +187,25 @@ city *searchNetwork(city *head, string cityName)
  * @param head: head of list
  * @return: NULL as the list is empty
  */
+ // NOT DONE
 city* deleteEntireNetwork(city *head)
 {
   cout << "deleting: " << head->name << endl;
+  current = head;
+  next;
+    /* deref head_ref to get the real head */
+  // struct Node* current = *head_ref;
+  // struct Node* next;
+  while (current != NULL)
+  {
+     next = current->next;
+     delete[current];
+     current = next;
+  }
 
+  /* deref head_ref to affect the real head back
+    in the caller. */
+  *head = NULL;
   cout << "Deleted network" << endl;
 
   // Return head, which should be NULL
@@ -194,6 +218,7 @@ city* deleteEntireNetwork(city *head)
  * @param head: pointer to head of the list
  * @param receiver: the name of the City to receive the message
  * @param message: the message to transmit*/
+ // NOT DONE
 void transmitMsg(city *head, string receiver, string message)
 {
   if(head == NULL)
@@ -215,6 +240,7 @@ void transmitMsg(city *head, string receiver, string message)
  * @param cityName: name of the city to delete in the network
  * @return: head node of list
  */
+ // NOT DONE
 city* deleteCity(city *head, string cityName)
 {
   // If the city dosn't exist, use this output statement:
@@ -227,10 +253,12 @@ city* deleteCity(city *head, string cityName)
  * Purpose: prints the current list nicely
  * @param head: head of list
  */
+ // NOT DONE
 void printPath(city *head)
 {
   cout << "== CURRENT PATH ==" << endl;
-  if (head == NULL) {
+  if (head == NULL)
+  {
     cout << "nothing in path" << endl;
   }
 
@@ -244,14 +272,21 @@ void printPath(city *head)
  * @param head: start of list
  * @return: head of list
  */
+ // DONE
 city* loadDefaultSetup(city *head)
 {
+  // Add code here to populate the LinkedList with the default values
+  //Function Finished
   head = deleteEntireNetwork(head);
   head = addCity(head,NULL,"Los Angeles");
-
-  // Add code here to populate the LinkedList with the default values
+  addCity(head,head,"Phoenix");
+  addCity(head,head->next,"Denver");
+  addCity(head,head->next->next,"Dallas");
+  addCity(head,head->next->next->next,"Atlanta");
+  addCity(head,head->next->next->next->next,"New York");
 
   return head;
+  printPath(head);
 }
 
 /* Purpose: displays a menu with options
