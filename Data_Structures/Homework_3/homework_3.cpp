@@ -153,11 +153,38 @@ city* handleUserInput(city *head)
  * @param cityName: name of the new city
  * @return: pointer to first node in list
  */
- // NOT DONE
+ // DONE - Works on Moodle
 city* addCity(city *head, city *previous, string cityName)
 {
-  // Only print this if previous is not NULL
-  cout << "prev: " << previous->name << " new: " << cityName << endl;
+  city* newNode = new city;
+  newNode->name = cityName;
+  city* temp = new city;
+  temp=head;
+  if(previous == NULL)
+  {
+    newNode->next = head;
+    head = newNode;
+  }
+  while(temp != NULL && previous != temp)
+  {
+    temp = temp->next;
+  }
+  if(temp == NULL)
+  {
+    if(head == NULL)// if the head is null then it creates a node for the head
+    {
+      head = newNode;
+      newNode->next = NULL;
+    }
+    return head;
+  }
+  else
+  {
+    newNode->next = temp->next; //the pointer for the new node will be the next of the prev node
+    temp->next = newNode; // the prev node will now point to the new node
+  }
+
+  cout << "prev: " << previous->name << "  new: " << cityName << endl;
   return head;
 }
 
@@ -169,9 +196,16 @@ city* addCity(city *head, city *previous, string cityName)
  * @return: pointer to node of cityName, or NULL if not found
  * @see addCity, deleteCity
  */
- // NOT DONE
+ // DONE - Works in Moodle
 city *searchNetwork(city *head, string cityName)
 {
+  city *temp = new city;
+  temp = head;
+  while(temp != NULL && temp->name != cityName)
+  {
+     temp = temp->next;
+  }
+  return temp;
   return head;
 }
 
@@ -180,31 +214,35 @@ city *searchNetwork(city *head, string cityName)
  * @param head: head of list
  * @return: NULL as the list is empty
  */
- // DONE
-city* deleteEntireNetwork(city *head)
-{
-  //Temp pointer to the node to be deleted
-  city *temp;
-  while(head != NULL)
-  {
-    cout << "deleting: " << head->name << endl;
-    temp = head;
-    //Move head to next node while temp stays behind to be deleted
-    head = head->next;
-    delete temp;
-  }
+ // DONE - Works on Moodle
+ city* deleteEntireNetwork(city *head)
+ {
+   if(head == NULL)
+   {
+       return 0;
+   }
+   //Temp pointer to the node to be deleted
+   city *temp;
+   while(head != NULL)
+   {
+     cout << "deleting: " << head->name << endl;
+     temp = head;
+     //Move head to next node while temp stays behind to be deleted
+     head = head->next;
+     delete temp;
+   }
 
-  cout << "Deleted network" << endl;
-  // Return head, which should be NULL
-  return head;
-}
+   cout << "Deleted network" << endl;
+   // Return head, which should be NULL
+   return head;
+ }
 
 /*
  * Purpose: transmit a message from city to city
  * @param head: pointer to head of the list
  * @param receiver: the name of the City to receive the message
  * @param message: the message to transmit*/
- // NOT DONE
+ // DONE - Works on Moodle
 void transmitMsg(city *head, string receiver, string message)
 {
   if(head == NULL)
@@ -212,13 +250,19 @@ void transmitMsg(city *head, string receiver, string message)
     cout << "Empty list" << endl;
     return;
   }
-
-  city *sender;
-  // Use the following output statements to print each node of the linked list:
-  cout << sender->name << " [# messages passed: " <<
-  sender->numberMessages << "] received: " <<
-  sender->message << endl;
-}
+  city* recip = searchNetwork(head, receiver);
+  city* sender = head;
+  while (sender != recip->next)
+  {
+    sender->numberMessages = sender->numberMessages +1;
+    sender->message = message;
+    // Use the following output statements to print each node of the linked list:
+    cout << sender->name << " [# messages passed: " <<
+    sender->numberMessages << "] received: " <<
+    sender->message << endl;
+    sender = sender->next;
+   }
+ }
 
 /*
  * Purpose: delete the city in the network with the specified name.
@@ -226,20 +270,43 @@ void transmitMsg(city *head, string receiver, string message)
  * @param cityName: name of the city to delete in the network
  * @return: head node of list
  */
- // NOT DONE
+ // DONE - Works on Moodle
 city* deleteCity(city *head, string cityName)
 {
-  // If the city dosn't exist, use this output statement:
-  cout << "City does not exist." << endl;
-
-  return head;
+  city* toDelete = searchNetwork(head, cityName);
+  int i = 0;
+  if (toDelete == head)
+  {
+    city* temp = head;
+    head = head->next;
+    free(temp);
+    return head;
+  }
+  if ((toDelete != NULL) and (toDelete->next != NULL))
+  {
+    while((toDelete != head) and (i >= 1))
+    {
+      head = head->next;
+    }
+    //cout << head->next->name << endl;
+    //cout << toDelete->next->name << endl;
+    head->next = toDelete->next;
+    i++;
+   }
+   else
+   {
+     cout << "City does not exist." << endl;
+     return head;
+   }
+   free(toDelete);
+   return head;;
 }
 
 /*
  * Purpose: prints the current list nicely
  * @param head: head of list
  */
- // DONE - Could have errors though, need addCity to work to find out.
+ // NOT DONE - Has erros in output
 void printPath(city *head)
 {
   cout << "== CURRENT PATH ==" << endl;
@@ -251,7 +318,7 @@ void printPath(city *head)
   {
     if(head != NULL)
     {
-      cout << head->name << " " << "->" << " ";
+      cout << head->name << " " << "->";
       head = head->next;
     }
     else
@@ -260,6 +327,7 @@ void printPath(city *head)
       break;
     }
   }
+  cout << "NULL" << endl;
   // Add code here to print the network path.
   cout << "===" << endl;
 }
@@ -269,7 +337,7 @@ void printPath(city *head)
  * @param head: start of list
  * @return: head of list
  */
- // DONE
+ // DONE - Works on Moodle
 city* loadDefaultSetup(city *head)
 {
   // Add code here to populate the LinkedList with the default values
