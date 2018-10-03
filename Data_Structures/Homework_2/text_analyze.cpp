@@ -67,8 +67,7 @@ int* getBiggerArray(int *oldArray, int oldCap){
   int* newArray = new int[2*oldCap];
 
   for (int i = 0; i < oldCap; i++){
-    int j = i + oldCap;
-    newArray[j] = oldArray[i];
+    newArray[i] = oldArray[i];
   }
   delete [] oldArray;
   return newArray;
@@ -80,8 +79,10 @@ int main(int argc, char *argv[]) {
     cout << "Invalid number of arguments." << endl;
   }
   else {
+    int capacity = 100;
+    int size = 0;
     string ignoreArray[50];
-    string *mainArray[] = new string;
+    string *mainArray = new wordItem[capacity];
     getStopWords(argv[3], ignoreArray);
 
     ifstream mainFile;
@@ -89,12 +90,12 @@ int main(int argc, char *argv[]) {
 
     mainFile.open(argv[2]);
 
-    while(getline(mainFile, word, ',')) {
+    while(mainFile >> word) {
       if(isStopWord(word, ignoreArray)) {
         NULL;
       }
       else {
-        
+
       }
     }
   }
