@@ -1,0 +1,5 @@
+michael@DESKTOP-RULF4UC:/mnt/c/Users/Michael/Documents/CPP_Projects/Data_Structures/Exam_1/question_2$ g++ -std=c++11 question_2.cpp -o Question2
+//First case
+michael@DESKTOP-RULF4UC:/mnt/c/Users/Michael/Documents/CPP_Projects/Data_Structures/Exam_1/question_2$ ./Question2
+Segmentation fault (core dumped)
+michael@DESKTOP-RULF4UC:/mnt/c/Users/Michael/Documents/CPP_Projects/Data_Structures/Exam_1/question_2$

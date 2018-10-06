@@ -1,0 +1,4 @@
+I didn't get it to properly output. I think my logic was correct but I could not get the list to output correctly.
+For the majority of the time I had it outputing instead of a segmentation fault, but at the end I ran out of time
+and didn't have time to fix it again. Again I think my logic was correct and you can read that in the comments, but
+my code was incorrect somewhere and did not output correctly. 
