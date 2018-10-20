@@ -32,7 +32,7 @@ void MovieTree::search(string title) {
 }
 
 void MovieTree::findMovie(string title) {
-  MovieNode *foundMovie=search(title);
+  MovieNode *foundMovie = search(title);
   if(foundMovie!=NULL) {
       cout << "Movie Info:" << endl;
       cout << "===========" << endl;
@@ -67,7 +67,7 @@ void MovieTree::printMovieInventory() {
 }
 
 void MovieTree::addMovieNode(int ranking, string title, int year, int quantity) {
-    MovieNode *newMovie = new MovieNode(ranking,title,year,quantity);
+    MovieNode *newMovie(ranking,title,year,quantity);
 
     if(root == NULL) {
        root = newMovie; //If tree empty make newMovie the root
@@ -163,19 +163,17 @@ void MovieTree::DeleteTree(MovieNode *node) {
     if(node==NULL){
       return;
     }
-    DeleteTree(node->leftChild);
-    DeleteTree(node->rightChild);
-    delete node;
+    else {
+      DeleteTree(node->leftChild);
+      DeleteTree(node->rightChild);
+      delete node;
+    }
 }
 
 void MovieTree::deleteMovie(string title) {
-
+  MovieNode *movie = search(title);
 }
 
 void MovieTree::countMovies() {
-
-}
-
-int main() {
 
 }
