@@ -171,9 +171,34 @@ void MovieTree::DeleteTree(MovieNode *node) {
 }
 
 void MovieTree::deleteMovie(string title) {
-  MovieNode *movie = search(title);
+  MovieNode *current = root;
+
+  if(current == NULL) {
+    cout << "Movie not found." << endl;
+  }
+
+  while(current != NULL) {
+    if(current->title == title) {
+      
+    }
+  }
+
 }
 
 void MovieTree::countMovies() {
-
+  int count = 0
+  MovieNode *current = root;
+  while(current != NULL) {
+    if(current->leftChild != NULL) {
+      count = count + 1;
+    }
+    count = count + 1;
+    if(current->rightChild != NULL) {
+      count = count + 1;
+      current = current->leftChild;
+    }
+    else {
+      return;
+    }
+  }
 }
