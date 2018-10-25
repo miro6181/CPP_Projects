@@ -47,19 +47,19 @@ int HashTable::getNumCollisions() {
 
 }
 
-int HashTable::getHash(string word) {
+int HashTable::getHash(string word) { //Private Member function
   int hash = 5381;
   string s(word);
-  for(auto i = s.begin(); i < s.end(); i++) {
-    hash = hash*33 + i;
+  for(string::iterator i = s.begin(); i != s.end(); i++) {
+    hash = hash*33 + (int)*i;
   }
-  hash = hash % hashTableSize
+  hash = hash % hashTableSize;
   if(hash < 0) {
     hash += hashTableSize;
   }
   return hash;
 }
 
-wordItem* HashTable::searchTable(string word){
+wordItem* HashTable::searchTable(string word){ //Private Member function
 
 }
