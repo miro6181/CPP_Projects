@@ -47,54 +47,62 @@ void HashTable::incrementCount(string word) {
 
 }
 
-void HashTable::addWord(string word) {
+void HashTable::addWord(std::string word) {
   int hash_val = getHash(word);
   wordItem* prev = NULL;
-  wordItem* entry = hashTable[hash_val];
-  while (entry != NULL) {
-    prev = entry;
-    entry = entry->next;
+  wordItem* val = hashTable[hash_val];
+  while(val != NULL) {
+    prev = val;
+    val = val->next;
   }
-  if (entry == NULL) {
-    entry = new wordItem;
-    entry->count = 1;
-    entry->word = word;
-    entry ->next = NULL;
+  if (val == NULL) {
+    val = new wordItem;
+    val->count = 1;
+    val->word = word;
+    val ->next = NULL;
     if (prev == NULL) {
-      hashTable[hash_val]= entry;
+      hashTable[hash_val]= val;
     }
     else {
-      prev->next = entry;
+      prev->next = val;
     }
   }
   incrementCount(word);
-  entry->word = word;
+  val->word = word;
 } //Done
 
 int HashTable::getTotalNumberNonStopWords() {
-
+  int count = 0;
+  string line;
+  for(int i = 0; i < hashTableSize; i++){
+    if(hashTable[i] != NULL){
+      line = hashTable[i]->word;
+      if(!isStopWord(line)){
+        count = count + hashTable[i]->count;
+      }
+    }
+  }
+  return count;
 }
 
 void HashTable::printTopN(int n) {
-  vector<wordItem*> TopN;
-  wordItem* temp;
-  for (int i = 0; i < hashTableSize; i++) {
-    temp = hashTable[i];
-    while (temp != NULL) {
-      for (int j = 0; j < n; j++) {
-        if(arr[j]->count <= temp->count && arr[j+1]->count <= temp->count) {
-          for (int k = 0; k < j; k++) {
-            arr[k] = arr[k+1]
-          }
-          arr[j]=arr[j+1];
-          arr[j] = temp;
-        }
-      }
-      temp = temp->next;
+  vector <wordItem*> TopArr;
+  for(int i = 0; i < hashTableSize; i++){
+    if(hashTable[i] != NULL && hashTable[i]->count > 150){
+      TopArr.push_back(hashTable[i]);
     }
   }
-  for (int k = 0; k < n; k++) {
-    std::cout << arr[k]->word << "--" << arr[k]->count;
+  for(int k = 0; k < 10000; k++){
+    for(int j = 0; j < TopArr.size() - 1; j++){
+      if(TopArr[j]->count < TopArr[j+1]->count){
+        wordItem* temp = TopArr[j];
+        TopArr[j] = TopArr[j+1];
+        TopArr[j+1] = temp;
+      }
+    }
+  }
+  for(int l = 0; l < n; l++){
+    cout << TopArr[l]->count << " - " << TopArr[l]->word << endl;
   }
 }
 
