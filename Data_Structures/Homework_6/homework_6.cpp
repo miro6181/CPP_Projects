@@ -176,40 +176,6 @@ void MovieTree::deleteMovie(string title) {
   if(current == NULL) {
     cout << "Movie not found." << endl;
   }
-
-  // if(title < current->title) {
-  //   current->leftChild = deleteMovie(current->leftChild->title);
-  //   //return current;
-  // }
-  //
-  // else if(title > current->title) {
-  //   current->rightChild = deleteMovie(current->rightChild->title);
-  //   //return current;
-  // }
-
-  // if(current->leftChild == NULL) {
-  //   MovieNode *temp = current->rightChild;
-  //   delete current;
-  //   //return temp;
-  // }
-  //
-  // if(current->rightChild == NULL) {
-  //   MovieNode *temp = current->leftChild;
-  //   delete current;
-  //   //return temp;
-  // }
-  // else {
-  //   MovieNode *succParent = current->rightChild;
-  //   MovieNode *succ = current->rightChild;
-  //
-  //   while(current->leftChild != NULL) {
-  //     succParent = succ;
-  //     succ = succ->leftChild;
-  //   succParent->leftChild = succ->rightChild;
-  //   current->title = succ->rightChild->title;
-  //   }
-  //   delete succ;
-  // }
 }
 
 void MovieTree::countMovies() {

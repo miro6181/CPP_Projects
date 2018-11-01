@@ -55,20 +55,16 @@ void HashTable::addWord(std::string word) {
     prev = val;
     val = val->next;
   }
-  if (val == NULL) {
-    val = new wordItem;
-    val->count = 1;
-    val->word = word;
-    val ->next = NULL;
-    if (prev == NULL) {
-      hashTable[hash_val]= val;
-    }
-    else {
-      prev->next = val;
-    }
-  }
-  incrementCount(word);
+  val = new wordItem;
+  val->count = 1;
   val->word = word;
+  val ->next = NULL;
+  if (prev == NULL) {
+    hashTable[hash_val]= val;
+  }
+  else {
+    prev->next = val;
+  }
 } //Done
 
 int HashTable::getTotalNumberNonStopWords() {
@@ -83,7 +79,7 @@ int HashTable::getTotalNumberNonStopWords() {
     }
   }
   return count;
-}
+} //Done
 
 void HashTable::printTopN(int n) {
   vector <wordItem*> TopArr;
