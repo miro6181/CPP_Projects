@@ -22,7 +22,7 @@ struct Transaction {
 class CustNode {
 public:
   CustNode();
-  CustNode(std::string n, std::string e, std::string p, std::vector<transaction> t);
+  CustNode(std::string n, std::string e, std::string p, std::vector<Transaction> t);
   ~CustNode();
   void addTransaction(std::string description, double amount);
 
@@ -35,7 +35,7 @@ public:
   CustNode *leftChild;
 
 private:
-  std::vector<transaction> tran;
+  std::vector<Transaction> tran;
 };
 
 //Class to Store Tree

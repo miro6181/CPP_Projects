@@ -12,7 +12,7 @@ CustNode::CustNode() {
   parent = rightChild = leftChild = nullptr;
 } // Done
 
-CustNode::CustNode(std::string n, std::string e, std::string p, std::vector<transaction> t) {
+CustNode::CustNode(std::string n, std::string e, std::string p, std::vector<Transaction> t) {
   name = n;
   email = e;
   phone = p;
