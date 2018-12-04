@@ -1,0 +1,5 @@
+For my question one I felt that my logic was all correct, however it was not outputting and I'm not
+completely sure why. I was running out of time and had to move on to the next question but my logic was
+to go through the tree using an in order traversal and then check to see if each child was greater. If it was
+then it was supposed to continue through the tree. Once it was finished traversing, it would return true. However,
+if it ran into a node that didn't have greater children then it would return false.

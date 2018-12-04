@@ -1,0 +1,6 @@
+I couldn't get this one running either and after taking too much time trying to get the first question to run,
+I didn't have enough time for the second question, but I will walk you through what my logic
+would was. The logic was to go through every node in the graph and then iterate through
+it's adjacent edges list. When it got to an element in the list it would switch the two end
+points thus reversing the edge. It would use a breadth first search to make sure every edge was
+visited for every node.
