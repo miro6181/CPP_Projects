@@ -12,7 +12,7 @@ CustNode::CustNode() {
   parent = rightChild = leftChild = nullptr;
 } // Done
 
-CustNode::CustNode(std::string n, std::string e, std::string p, std::vector<Transaction> t) {
+CustNode::CustNode(string n, string e, string p, vector<Transaction> t) {
   name = n;
   email = e;
   phone = p;
@@ -23,7 +23,7 @@ CustNode::~CustNode() {
 
 }
 
-void CustNode::addTransaction(std::string description, double amount) {
+void CustNode::addTransaction(string description, double amount,  bool isPaid) {
 
 }
 
@@ -39,15 +39,15 @@ CRMTree::~CRMTree() {
   deleteTree(root);
 } // Done
 
-void CRMTree::addCustomer(std::string name,std::string email, std::string phone) {
-  
+void CRMTree::addCustomer(string name,string email, string phone) {
+
 }
 
 void CRMTree::deleteCustomer(CustNode delCust) {
 
 }
 
-void CRMTree::newTransaction(CustNode newTransNode, std::string description, double amount) {
+void CRMTree::newTransaction(CustNode newTransNode, string description, double amount) {
 
 }
 
@@ -55,6 +55,6 @@ void CRMTree::findCustomer() {
 
 }
 
-CustNode CRMTree::search(CustNode inCust) {
+CustNode CRMTree::search(string name) {
 
 }

@@ -24,7 +24,7 @@ public:
   CustNode();
   CustNode(std::string n, std::string e, std::string p, std::vector<Transaction> t);
   ~CustNode();
-  void addTransaction(std::string description, double amount);
+  void addTransaction(std::string description, double amount, bool isPaid);
 
   std::string name;
   std::string email;
@@ -52,7 +52,7 @@ public:
 private:
   CustNode *root;
   // Look into templates to see if this can search with name, email, or phone
-  CustNode search(CustNode inCust);
+  CustNode search(std::string name);
 };
 
 #endif
