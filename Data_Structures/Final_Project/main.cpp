@@ -14,7 +14,7 @@ int main() {
   cout << "2. Delete Customer" << endl;
   cout << "3. Search " << endl;
   cout << "4. Add Transaction" << endl;
-  cout << "5. Exit "
+  cout << "5. Exit " << endl;
 
   int useIn;
   cin >> useIn;
@@ -45,7 +45,7 @@ int main() {
       cout << "Customer Deleted" << endl;
 
     case 3:
-      cout << "Enter the Customer's Name: " << end;
+      cout << "Enter the Customer's Name: " << endl;
       string name;
       cin >> name;
 

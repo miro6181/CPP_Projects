@@ -87,7 +87,7 @@ void CRMTree::findCustomer() {
     cout << "Email: " << foundCust->email << endl;
     cout << "Phone Number: " << foundCust->phone << endl;
     //Itterates through the transaction list and displays all of them.
-    for(int i = 0; i < length(tran); i++) {
+    for(int i = 0; i < tran.size(); i++) {
       cout << "Transaction " << i << ": " << tran[i] << endl;
     }
   }
