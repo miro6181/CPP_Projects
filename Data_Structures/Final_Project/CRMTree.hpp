@@ -21,9 +21,18 @@ struct Transaction {
 // Class to store node information
 class CustNode {
 public:
-  CustNode();
-  CustNode(std::string n, std::string e, std::string p, std::vector<Transaction> t);
-  ~CustNode();
+  CustNode(){
+    parent = leftChild = rightChild = nullptr;
+  }
+
+  CustNode(std::string n, std::string e, std::string p, std::vector<Transaction> t){
+    name = n;
+    email = e;
+    phone = p;
+    parent = rightChild = leftChild = nullptr;
+  }
+
+  ~CustNode() {}
   void addTransaction(std::string description, double amount, bool isPaid);
 
   std::string name;
@@ -44,14 +53,13 @@ public:
   CRMTree();
   ~CRMTree();
   void addCustomer(std::string name,std::string email, std::string phone);
-  void deleteCustomer(CustNode delCust);
-  void newTransaction(CustNode newTransNode, std::string description, double amount);
+  void deleteCustomer(std::string delCust);
+  void newTransaction(CustNode newTransNode, std::string description, double amount, bool isPaid);
   void findCustomer();
 
 
 private:
   CustNode *root;
-  // Look into templates to see if this can search with name, email, or phone
   CustNode search(std::string name);
 };
 
