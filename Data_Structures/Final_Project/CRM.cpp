@@ -4,10 +4,10 @@
 
 using namespace std;
 
-void deleteTree(CRMTree *root) {
+void deleteTree(CustNode *root) {
   while(root != NULL) {
-    deleteTree(root->left);
-    deleteTree(root->right);
+    deleteTree(root->leftChild);
+    deleteTree(root->rightChild);
     delete root;
   }
 } //Done
@@ -48,11 +48,11 @@ void CRMTree::addCustomer(string name,string email, string phone) {
         if(temp->leftChild == NULL) {
           temp->leftChild = newCustomer;
           newCustomer->parent = temp;
-          return
+          return;
         }
         else {
           //Increment
-          temp = temp->leftChild
+          temp = temp->leftChild;
         }
       }
       else {
@@ -87,12 +87,15 @@ void CRMTree::findCustomer() {
     cout << "Email: " << foundCust->email << endl;
     cout << "Phone Number: " << foundCust->phone << endl;
     //Itterates through the transaction list and displays all of them.
-    for(int i = 0; i < tran.size(); i++) {
-      cout << "Transaction " << i << ": " << tran[i] << endl;
+    for(int i = 0; i < foundCust->tran.size(); i++) {
+      cout << "Transaction " << i << ": " << foundCust->tran[i]->description << endl;
+      cout << "Amount" << ": " << foundCust->tran[i]->amount << endl;
+      cout << "Transaction Time" << ": " << foundCust->tran[i]->currentTime << endl;
+      cout << "Is Paid" << ": " << foundCust->tran[i]->isPaid << endl;
     }
   }
 }
 
 CustNode CRMTree::search(string name) {
-    
+
 }

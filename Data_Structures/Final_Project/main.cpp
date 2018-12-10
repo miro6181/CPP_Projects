@@ -7,6 +7,7 @@
 using namespace std;
 
 int main() {
+  CRMTree CRM;
   cout << "Welcome!" << endl;
   cout << "Select an option from the Menu Below" << endl;
   cout << "=======Main Menu=======" << endl;
@@ -16,62 +17,65 @@ int main() {
   cout << "4. Add Transaction" << endl;
   cout << "5. Exit " << endl;
 
-  int useIn;
+  char useIn;
   cin >> useIn;
 
   switch(useIn) {
-    case 1:
-      string name;
+    case '1':
       cout << "Enter Name " << endl;
+      string name;
       cin >> name;
 
       string email;
       cout << "Enter Email " << endl;
       cin >> email;
 
-      string phone;
       cout << "Enter Phone Number " << endl;
+      string phone;
       cin >> phone;
 
-      addCustomer(name, email, phone);
+      CRM.addCustomer(name, email, phone);
+      break;
 
-    case 2:
+    case '2':
       cout << "What customer do you want to delete?" << endl;
-      string delCust;
-      cin >> delCust;
+      string deleteCust;
+      cin >> deleteCust;
 
       cout << "Deleting..." << endl;
-      deleteCustomer(delCust);
+      CRM.deleteCustomer(deleteCust);
       cout << "Customer Deleted" << endl;
+      break;
 
-    case 3:
+    case '3':
       cout << "Enter the Customer's Name: " << endl;
       string name;
       cin >> name;
 
-      search(name);
+      CRM.search(name);
+      break;
 
-    case 4:
+    case '4':
       string name;
-      cout << "Enter the name of the customer: "
+      cout << "Enter the name of the customer: ";
       cin >> name;
-      custNode *customer = search(name);
+      CustNode *customer = CRM.search(name);
 
       string descript;
-      cout << "Enter a Description: "
+      cout << "Enter a Description: ";
       cin >> descript;
 
-      double amount;
-      cout << "Enter an amount: "
-      cin >> amount;
+      double amt;
+      cout << "Enter an amount: ";
+      cin >> amt;
 
-      string currentTime = timestamp();
+      // string currentTime = timestamp();
 
       string ip;
-      cout << "Has the Customer Paid?(Y/N)"
+      cout << "Has the Customer Paid?(Y/N)";
       cin >> ip;
 
-      bool isPaid
+      bool isPaid;
       if(ip == "Y" || ip == "y") {
         isPaid = true;
       }
@@ -79,9 +83,10 @@ int main() {
         isPaid = false;
       }
 
-      newTransaction(customer, descript, amount, isPaid);
+      CRM.newTransaction(customer, descript, amt, isPaid);
+      break;
 
-    case 5:
+    case '5':
       cout << "GoodBye!" << endl;
       exit;
   };
