@@ -7,13 +7,11 @@
 struct Transaction {
   std::string description;
   double amount;
-  std::string CurrentTime;
   bool isPaid;
 
-  Transaction(std::string d, double a, std::string t, bool ip) {
+  Transaction(std::string d, double a, bool ip) {
     description = d;
     amount = a;
-    CurrentTime = t;
     isPaid = ip;
   }
 };
@@ -53,9 +51,9 @@ public:
   CRMTree();
   ~CRMTree();
   void addCustomer(std::string name,std::string email, std::string phone);
-  void deleteCustomer(std::string delCust);
-  void newTransaction(CustNode newTransNode, std::string description, double amount, bool isPaid);
-  void findCustomer();
+  void deleteCustomer(std::string Custname);
+  void newTransaction(std::string name, std::string description, double amount, bool isPaid);
+  void findCustomer(std::string name);
 
 
 private:

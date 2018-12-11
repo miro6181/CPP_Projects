@@ -12,11 +12,12 @@ MovieTree::~MovieTree() {
 }
 
 void MovieTree::search(string title) {
+  MovieNode *current = node;
+
   if(node == NULL) {
       return NULL;
   }
 
-  MovieNode *current = node;
   while(current != NULL) {
       if(current->title == value){
           return current;
