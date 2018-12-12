@@ -7,8 +7,7 @@
 using namespace std;
 
 int main() {
-  CRMTree CRM; //Comment this line out to mess around with menu
-
+  CRMTree CRM;
   // Create variables for user input
   int useIn = 0;
   double amt = 0;
@@ -42,7 +41,7 @@ int main() {
         cin >> phone;
         cout << endl;
 
-        CRM.addCustomer(name, email, phone); //Comment this line out to mess around with menu
+        CRM.addCustomer(name, email, phone);
         //Usleep is an artificial way of slowing down the program to make it flow a little better
         //This command will make the program wait 1 second before proceeding.
         usleep(1000000);
@@ -57,7 +56,7 @@ int main() {
         cout << endl;
 
         cout << "Deleting..." << endl;
-        CRM.deleteCustomer(deleteCust); //Comment this line out to mess around with menu
+        CRM.deleteCustomer(deleteCust);
         usleep(1000000);
         cout << endl;
         cout << "Customer Deleted" << endl;
@@ -70,7 +69,7 @@ int main() {
         cin >> name;
         cout << endl;
 
-        CRM.findCustomer(name); //Comment this line out to mess around with menu
+        CRM.findCustomer(name);
 
         cout << endl;
         break;
@@ -100,7 +99,7 @@ int main() {
           isPaid = false;
         }
 
-        CRM.newTransaction(name, descript, amt, isPaid); //Comment this line out to mess around with menu
+        CRM.newTransaction(name, descript, amt, isPaid);
 
         cout << "Transaction Added." << endl;
         cout << endl;

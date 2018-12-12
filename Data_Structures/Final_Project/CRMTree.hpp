@@ -19,19 +19,6 @@ struct Transaction {
 // Class to store node information
 class CustNode {
 public:
-  CustNode(){
-    parent = leftChild = rightChild = nullptr;
-  }
-
-  CustNode(std::string n, std::string e, std::string p, std::vector<Transaction> t){
-    name = n;
-    email = e;
-    phone = p;
-    parent = rightChild = leftChild = nullptr;
-  }
-
-  ~CustNode() {}
-  void addTransaction(std::string description, double amount, bool isPaid);
 
   std::string name;
   std::string email;
@@ -41,7 +28,21 @@ public:
   CustNode *rightChild;
   CustNode *leftChild;
 
-private:
+  CustNode(){
+    parent = leftChild = rightChild = nullptr;
+  }
+
+  CustNode(std::string n, std::string e, std::string p){
+    name = n;
+    email = e;
+    phone = p;
+    parent = rightChild = leftChild = nullptr;
+  }
+
+  ~CustNode() {}
+
+  void addTransaction(std::string description, double amount, bool isPaid);
+
   std::vector<Transaction> tran;
 };
 

@@ -35,7 +35,7 @@ CRMTree::~CRMTree() {
 void CRMTree::addCustomer(string name,string email, string phone) {
 
   //Create new node
-  CustNode *newCustomer(string name, string email, string phone);
+  CustNode* newCustomer(string name, string email, string phone);
 
   //If tree is empty add at root
   if(root == NULL) {
@@ -78,15 +78,15 @@ void CRMTree::deleteCustomer(string Custname) {
 
   // Node with only one child or no child
   if (delCust->leftChild == NULL) {
-      Custnode *temp = root->rightChild;
+      CustNode *temp = root->rightChild;
       free(delCust);
-      return temp;
+      return;
   }
   else if (delCust->rightChild == NULL)
   {
       CustNode *temp = root->leftChild;
       free(delCust);
-      return temp;
+      return;
   }
 
   CustNode* current = delCust;
@@ -97,15 +97,15 @@ void CRMTree::deleteCustomer(string Custname) {
   //Replace with leftmost leaf
   delCust = current;
 
-  delCust->rightChild = deleteCustomer(delCust->rightChild);
+  delCust->rightChild = deleteCustomer(delCust->rightChild->name);
 
-  return delCust;
+  return;
 
 } //Done
 
 void newTransaction(string name, string description, double amount, bool isPaid) {
   CustNode *foundNode = search(name);
-  foundNode.addTransaction(description, amount, isPaid);
+  foundNode->addTransaction(description, amount, isPaid);
 } //Done
 
 void CRMTree::findCustomer(string name) {
@@ -117,10 +117,9 @@ void CRMTree::findCustomer(string name) {
     cout << "Phone Number: " << foundCust->phone << endl;
     //Itterates through the transaction list and displays all of the transactions.
     for(int i = 0; i < foundCust->tran.size(); i++) {
-      cout << "Transaction " << i << ": " << foundCust->tran[i]->description << endl;
-      cout << "Amount" << ": " << foundCust->tran[i]->amount << endl;
-      cout << "Transaction Time" << ": " << foundCust->tran[i]->currentTime << endl;
-      cout << "Is Paid" << ": " << foundCust->tran[i]->isPaid << endl;
+      cout << "Transaction " << i << ": " << foundCust->tran[i].description << endl;
+      cout << "Amount" << ": " << foundCust->tran[i].amount << endl;
+      cout << "Is Paid" << ": " << foundCust->tran[i].isPaid << endl;
     }
   }
 } //Not Done
@@ -130,7 +129,7 @@ CustNode CRMTree::search(string name) {
 
   //If tree is empty
   if(searchCust == NULL) {
-    return NULL;
+    return searchCust;
   }
 
   //If node's name matches return the node
@@ -145,5 +144,5 @@ CustNode CRMTree::search(string name) {
       searchCust = searchCust->rightChild;
     }
   }
-  return NULL;
+  return searchCust;
 } //Done
