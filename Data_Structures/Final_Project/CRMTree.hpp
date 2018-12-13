@@ -17,12 +17,12 @@ struct Transaction {
 };
 
 // Class to store node information
-class CustNode {
-public:
+struct CustNode {
 
   std::string name;
   std::string email;
   std::string phone;
+  std::vector<Transaction> tran;
 
   CustNode *parent;
   CustNode *rightChild;
@@ -38,12 +38,6 @@ public:
     phone = p;
     parent = rightChild = leftChild = nullptr;
   }
-
-  ~CustNode() {}
-
-  void addTransaction(std::string description, double amount, bool isPaid);
-
-  std::vector<Transaction> tran;
 };
 
 //Class to Store Tree
@@ -58,8 +52,7 @@ public:
 
 
 private:
+  CustNode *search(std::string name);
   CustNode *root;
-  CustNode search(std::string name);
 };
-
 #endif

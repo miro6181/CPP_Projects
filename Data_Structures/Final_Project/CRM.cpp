@@ -13,13 +13,6 @@ void deleteTree(CustNode *root) {
   }
 } //Done
 
-/* CustNode Memeber Functions */
-
-void CustNode::addTransaction(string description, double amount, bool isPaid) {
-  //Add the transaction to the trasaction vector
-  tran.push_back(Transaction(description, amount, isPaid));
-} //Done
-
 /* CRMTree Member Functions */
 
 //Constructor
@@ -32,24 +25,44 @@ CRMTree::~CRMTree() {
   deleteTree(root);
 } // Done
 
-void CRMTree::addCustomer(string name,string email, string phone) {
+CustNode* CRMTree::search(string name) {
+
+  CustNode* searchCust = root;
+
+  //If node's name matches return the node
+  while(searchCust != NULL) {
+    if(searchCust->name > name) {
+      searchCust = searchCust->leftChild;
+    }
+    else if(searchCust->name == name){
+      break;
+    }
+    else if(searchCust->name < name) {
+      searchCust = searchCust->rightChild;
+    }
+  }
+  return searchCust;
+} //Done
+
+void CRMTree::addCustomer(string name, string email, string phone) {
 
   //Create new node
-  CustNode* newCustomer(string name, string email, string phone);
+  CustNode* newCust = new CustNode(name, email, phone);
 
   //If tree is empty add at root
   if(root == NULL) {
-    root = newCustomer;
+    root = newCust;
+    return;
   }
   else {
     //Temp node for traversal
-    CustNode *temp = root;
-    while(true) {
+    CustNode* temp = root;
+    while(temp!= NULL) {
       //If left child is empty and less than temp add left
-      if(newCustomer->name <= temp->name) {
+      if(newCust->name <= temp->name) {
         if(temp->leftChild == NULL) {
-          temp->leftChild = newCustomer;
-          newCustomer->parent = temp;
+          temp->leftChild = newCust;
+          newCust->parent = temp;
           return;
         }
         else {
@@ -60,8 +73,8 @@ void CRMTree::addCustomer(string name,string email, string phone) {
       else {
         //If right child is empty and less than temp add right
         if(temp->rightChild == NULL) {
-          temp->rightChild = newCustomer;
-          newCustomer->parent = temp;
+          temp->rightChild = newCust;
+          newCust->parent = temp;
           return;
         }
         else {
@@ -97,52 +110,34 @@ void CRMTree::deleteCustomer(string Custname) {
   //Replace with leftmost leaf
   delCust = current;
 
-  delCust->rightChild = deleteCustomer(delCust->rightChild->name);
+  // delCust->rightChild = deleteCustomer(delCust->rightChild->name);
 
   return;
 
 } //Done
 
-void newTransaction(string name, string description, double amount, bool isPaid) {
-  CustNode *foundNode = search(name);
-  foundNode->addTransaction(description, amount, isPaid);
+void CRMTree::newTransaction(string name, string description, double amount, bool isPaid) {
+  CustNode* foundNode = search(name);
+  foundNode->tran.push_back(Transaction(description, amount, isPaid));
 } //Done
 
 void CRMTree::findCustomer(string name) {
-  CustNode *foundCust = search(string name);
+  CustNode* foundCust = search(name);
   if(foundCust != NULL) {
     cout << "Name: " << foundCust->name << endl;
     cout << "==================" << endl;
     cout << "Email: " << foundCust->email << endl;
     cout << "Phone Number: " << foundCust->phone << endl;
+    cout << endl;
+    cout << "Transactions" << endl;
+    cout << "==================" << endl;
+    cout << endl;
     //Itterates through the transaction list and displays all of the transactions.
     for(int i = 0; i < foundCust->tran.size(); i++) {
-      cout << "Transaction " << i << ": " << foundCust->tran[i].description << endl;
+      cout << "Transaction " << i + 1 << ": " << foundCust->tran[i].description << endl;
       cout << "Amount" << ": " << foundCust->tran[i].amount << endl;
       cout << "Is Paid" << ": " << foundCust->tran[i].isPaid << endl;
+      cout << endl;
     }
   }
 } //Not Done
-
-CustNode CRMTree::search(string name) {
-  CustNode *searchCust = root;
-
-  //If tree is empty
-  if(searchCust == NULL) {
-    return searchCust;
-  }
-
-  //If node's name matches return the node
-  while(searchCust != NULL) {
-    if(searchCust->name == name) {
-      return searchCust;
-    }
-    else if(name < searchCust->name){
-      searchCust = searchCust->leftChild;
-    }
-    else {
-      searchCust = searchCust->rightChild;
-    }
-  }
-  return searchCust;
-} //Done
