@@ -30,7 +30,8 @@ int main() {
     switch(useIn) {
       case 1:
         cout << "Enter Name " << endl;
-        cin >> name;
+        cin.ignore();
+        getline(cin, name);
         cout << endl;
 
         cout << "Enter Email " << endl;
@@ -38,6 +39,7 @@ int main() {
         cout << endl;
 
         cout << "Enter Phone Number " << endl;
+        cin.ignore();
         cin >> phone;
         cout << endl;
 
@@ -52,6 +54,7 @@ int main() {
 
       case 2:
         cout << "What customer do you want to delete?" << endl;
+        cin.ignore();
         cin >> deleteCust;
         cout << endl;
 
@@ -66,7 +69,9 @@ int main() {
 
       case 3:
         cout << "Enter the Customer's Name: " << endl;
+        cin.ignore();
         cin >> name;
+        // getline(cin, name);
         cout << endl;
 
         CRM.findCustomer(name);
@@ -76,18 +81,22 @@ int main() {
 
       case 4:
         cout << "Enter the name of the customer: " << endl;
+        cin.ignore();
         cin >> name;
         cout << endl;
 
         cout << "Enter a Description: " << endl;
+        cin.ignore();
         cin >> descript;
         cout << endl;
 
         cout << "Enter an amount: " << endl;
+        cin.ignore();
         cin >> amt;
         cout << endl;
 
         cout << "Has the Customer Paid?(Y/N)" << endl;
+        cin.ignore();
         cin >> ip;
         cout << endl;
 
