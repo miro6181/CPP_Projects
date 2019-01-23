@@ -1,8 +1,8 @@
-/* 
- * CS:APP Data Lab 
- * 
- * <Please put your name and userid here>
- * 
+/*
+ * CS:APP Data Lab
+ *
+ * Name: Michael Rogers, Username: miro6181, Student ID: 105667404
+ *
  * bits.c - Source file with your solutions to the Lab.
  *          This is the file you will hand in to your instructor.
  *
@@ -10,7 +10,7 @@
  * compiler. You can still use printf for debugging without including
  * <stdio.h>, although you might get a compiler warning. In general,
  * it's not good practice to ignore compiler warnings, but in this
- * case it's OK.  
+ * case it's OK.
  */
 
 #if 0
@@ -24,11 +24,11 @@ You will provide your solution to the Data Lab by
 editing the collection of functions in this source file.
 
 INTEGER CODING RULES:
- 
+
   Replace the "return" statement in each function with one
-  or more lines of C code that implements the function. Your code 
+  or more lines of C code that implements the function. Your code
   must conform to the following style:
- 
+
   int Funct(arg1, arg2, ...) {
       /* brief description of how your implementation works */
       int var1 = Expr1;
@@ -47,7 +47,7 @@ INTEGER CODING RULES:
   2. Function arguments and local variables (no global variables).
   3. Unary integer operations ! ~
   4. Binary integer operations & ^ | + << >>
-    
+
   Some of the problems restrict the set of allowed operators even further.
   Each "Expr" may consist of multiple operators. You are not restricted to
   one operator per line.
@@ -62,7 +62,7 @@ INTEGER CODING RULES:
   7. Use any data type other than int.  This implies that you
      cannot use arrays, structs, or unions.
 
- 
+
   You may assume that your machine:
   1. Uses 2s complement, 32-bit representations of integers.
   2. Performs right shifts arithmetically.
@@ -106,26 +106,26 @@ You are expressly forbidden to:
 
 
 NOTES:
-  1. Use the dlc (data lab checker) compiler (described in the handout) to 
+  1. Use the dlc (data lab checker) compiler (described in the handout) to
      check the legality of your solutions.
   2. Each function has a maximum number of operators (! ~ & ^ | + << >>)
-     that you are allowed to use for your implementation of the function. 
-     The max operator count is checked by dlc. Note that '=' is not 
+     that you are allowed to use for your implementation of the function.
+     The max operator count is checked by dlc. Note that '=' is not
      counted; you may use as many of these as you want without penalty.
   3. Use the btest test harness to check your functions for correctness.
   4. Use the BDD checker to formally verify your functions
   5. The maximum number of ops for each function is given in the
-     header comment for each function. If there are any inconsistencies 
+     header comment for each function. If there are any inconsistencies
      between the maximum ops in the writeup and in this file, consider
      this file the authoritative source.
 
 /*
  * STEP 2: Modify the following functions according the coding rules.
- * 
+ *
  *   IMPORTANT. TO AVOID GRADING SURPRISES:
  *   1. Use the dlc compiler to check that your solutions conform
  *      to the coding rules.
- *   2. Use the BDD checker to formally verify that your solutions produce 
+ *   2. Use the BDD checker to formally verify that your solutions produce
  *      the correct answers.
  */
 
@@ -167,17 +167,18 @@ NOTES:
    - 285 hentaigana
    - 3 additional Zanabazar Square characters */
 /* We do not support C11 <threads.h>.  */
-/* 
- * bitOr - x|y using only ~ and & 
+/*
+ * bitOr - x|y using only ~ and &
  *   Example: bitOr(6, 5) = 7
  *   Legal ops: ~ &
  *   Max ops: 8
  *   Rating: 1
  */
 int bitOr(int x, int y) {
+  ~(~x & ~y);
   return 2;
 }
-/* 
+/*
  * evenBits - return word with all even-numbered bits set to 1
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 8
@@ -186,8 +187,8 @@ int bitOr(int x, int y) {
 int evenBits(void) {
   return 2;
 }
-/* 
- * minusOne - return a value of -1 
+/*
+ * minusOne - return a value of -1
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 2
  *   Rating: 1
@@ -195,7 +196,7 @@ int evenBits(void) {
 int minusOne(void) {
   return 2;
 }
-/* 
+/*
  * allEvenBits - return 1 if all even-numbered bits in word set to 1
  *   Examples allEvenBits(0xFFFFFFFE) = 0, allEvenBits(0x55555555) = 1
  *   Legal ops: ! ~ & ^ | + << >>
@@ -205,7 +206,7 @@ int minusOne(void) {
 int allEvenBits(int x) {
   return 2;
 }
-/* 
+/*
  * anyOddBit - return 1 if any odd-numbered bit in word set to 1
  *   Examples anyOddBit(0x5) = 0, anyOddBit(0x7) = 1
  *   Legal ops: ! ~ & ^ | + << >>
@@ -213,9 +214,10 @@ int allEvenBits(int x) {
  *   Rating: 2
  */
 int anyOddBit(int x) {
+    //Use an & operation with x and 0xAAAAAAA... for 32 bits
     return 2;
 }
-/* 
+/*
  * byteSwap - swaps the nth byte and the mth byte
  *  Examples: byteSwap(0x12345678, 1, 3) = 0x56341278
  *            byteSwap(0xDEADBEEF, 0, 2) = 0xDEEFBEAD
@@ -225,12 +227,13 @@ int anyOddBit(int x) {
  *  Rating: 2
  */
 int byteSwap(int x, int n, int m) {
+    // << by m
     return 2;
 }
-/* 
+/*
  * addOK - Determine if can compute x+y without overflow
  *   Example: addOK(0x80000000,0x80000000) = 0,
- *            addOK(0x80000000,0x70000000) = 1, 
+ *            addOK(0x80000000,0x70000000) = 1,
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 20
  *   Rating: 3
@@ -238,8 +241,8 @@ int byteSwap(int x, int n, int m) {
 int addOK(int x, int y) {
   return 2;
 }
-/* 
- * conditional - same as x ? y : z 
+/*
+ * conditional - same as x ? y : z
  *   Example: conditional(2,4,5) = 4
  *   Legal ops: ! ~ & ^ | + << >>
  *   Max ops: 16
@@ -248,7 +251,7 @@ int addOK(int x, int y) {
 int conditional(int x, int y, int z) {
   return 2;
 }
-/* 
+/*
  * isAsciiDigit - return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9')
  *   Example: isAsciiDigit(0x35) = 1.
  *            isAsciiDigit(0x3a) = 0.
@@ -260,7 +263,7 @@ int conditional(int x, int y, int z) {
 int isAsciiDigit(int x) {
   return 2;
 }
-/* 
+/*
  * replaceByte(x,n,c) - Replace byte n in x with c
  *   Bytes numbered from 0 (LSB) to 3 (MSB)
  *   Examples: replaceByte(0x12345678,1,0xab) = 0x1234ab78
@@ -303,7 +306,7 @@ int satAdd(int x, int y) {
 /*
  * Extra credit
  */
-/* 
+/*
  * float_abs - Return bit-level equivalent of absolute value of f for
  *   floating point argument f.
  *   Both the argument and result are passed as unsigned int's, but
@@ -317,7 +320,7 @@ int satAdd(int x, int y) {
 unsigned float_abs(unsigned uf) {
   return 2;
 }
-/* 
+/*
  * float_f2i - Return bit-level equivalent of expression (int) f
  *   for floating point argument f.
  *   Argument is passed as unsigned int, but
@@ -332,7 +335,7 @@ unsigned float_abs(unsigned uf) {
 int float_f2i(unsigned uf) {
   return 2;
 }
-/* 
+/*
  * float_half - Return bit-level equivalent of expression 0.5*f for
  *   floating point argument f.
  *   Both the argument and result are passed as unsigned int's, but
