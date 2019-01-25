@@ -90,33 +90,34 @@ Hyperlinks for convenience:
 %\pagebreak
 
 \item \label{1c} $\ln^2 n = \Theta(\lg^2 n)$
-\makenonemptybox{2.5in}{}
+\makenonemptybox{3in}{Using the change of base formula, $\lg^2 n$ becomes $\frac{\ln^2 n}{\ln^2 (2)}$ \\ Now using the limit test to find Big-O: $$\lim_{n\to\infty}\frac{\ln^2 n}{\frac{\ln^2 n}{\ln^2 (2)}} = \lim_{n\to\infty}\frac{(\ln^2 n)  (\ln^2 (2))}{\ln^2 n} = \lim_{n\to\infty}{\ln^2 (2)} = \ln^2 (2) \Rightarrow \ln^2 n = O(\lg^2 n)$$ Big-$\Omega$: $$\lim_{n\to\infty}\frac{\frac{\ln^2 n}{\ln^2 (2)}}{\ln^2 n} = \lim_{n\to\infty}\frac{\ln^2 n}{(\ln^2 n)(\ln^2 (2))} = \lim_{n\to\infty}{\frac{1}{\ln^2 (2)}} = \frac{1}{\ln^2 (2)} \Rightarrow \ln^2 n = \Omega(\lg^2 n)$$ Since $\ln^2 n = O(\lg^2 n) = \Omega(\lg^2 n)$ \\ \\ Then $\ln^2 n = \Theta(\lg^2 n)$}
 \pagebreak
 
 \item \label{1d} $2^n = \Theta(2^{n+7})$
-%\makenonemptybox{2.5in}{}
+\\ \\ I don't know
+
 \pagebreak
 
 \pagebreak
 \item \label{1e} $n+1 = O(n^4)$
-\makenonemptybox{2.5in}{}
+\makenonemptybox{2.5in}{I don't know}
 
 \item \label{1f} $1 = O(1/n)$
-\makenonemptybox{2.5in}{}
+\makenonemptybox{2.5in}{I don't know}
 
 \pagebreak
 \item \label{1g} $3^{3n} = \Theta(9^n)$
-\makenonemptybox{2.5in}{}
+\makenonemptybox{2.5in}{I don't know}
 
 \item \label{1h} $2^{2n} = O(2^n)$
-\makenonemptybox{2.5in}{}
+\makenonemptybox{2.5in}{I don't know}
 
 \pagebreak
 \item \label{1i} $2^{n+1} = \Theta(2^{n \lg n})$
-\makenonemptybox{2.5in}{}
+\makenonemptybox{2.5in}{I don't know}
 
 \item \label{1j} $\sqrt{n} = O(\lg n)$
-\makenonemptybox{2.5in}{}
+\makenonemptybox{2.5in}{I don't know}
 
 \end{enumerate}
 
@@ -139,10 +140,11 @@ Hyperlinks for convenience:
 	\end{verbatim}
 	\end{small}
 	What is the running time complexity of the procedure above? Write your answer as a $\Theta$ bound in terms of $n$.}
+	\\ \\ \\ \\ I don't know
 	\pagebreak
 
 	\item \label{stocks:b} {\itshape Explain (1--2 sentences) under what conditions on the contents of $A$ the {\tt makeWizardMoney} algorithm will return 0 coins.}
-	\makenonemptybox{2.5in}{}
+	\makenonemptybox{2.5in}{I don't know}
 	
 	\item \label{stocks:c} {\itshape Dumbledore knows you know that {\tt makeWizardMoney} is wildly inefficient. With a wink, he suggests writing a function to make a new array $M$ of size $n$ such that
 	\begin{align}
@@ -151,12 +153,14 @@ Hyperlinks for convenience:
 	That is, $M[i]$ gives the minimum value in the subarray of $A[0 .. i]$.
 	
 	Write pseudocode to compute the array $M$. What is the running time complexity of your pseudocode? Write your answer as a $\Theta$ bound in terms of $n$.}
+	\\ \\ I don't know
 	\pagebreak
 	
 	\item \label{stocks:d} {\itshape Use the array $M$ computed from (\ref{stocks:c}) to compute the maximum coin return in time $\Theta(n)$.}
-	\makenonemptybox{2in}{}
+	\makenonemptybox{2in}{I don't know}
 	
 	\item \label{stocks:e} {\itshape Give Dumbledore what he wants:\ rewrite the original algorithm in a way that combine parts (\ref{stocks:b})--(\ref{stocks:d}) to avoid creating a new array $M$.}
+\\ \\ I don't know
 	\pagebreak
 	\end{enumerate}
 
@@ -167,9 +171,21 @@ Hyperlinks for convenience:
 	
 	\begin{enumerate}
 	\item \label{3a} {\itshape Write pseudocode for a simple linear search algorithm, which will scan through the input sequence $A$, looking for $v$.}
+
+	\begin{verbatim}
+	linSearch(A,v){
+	for i in A{
+	   if A[i] == v{
+	      return A[i]
+	   }
+	}
+	return NIL
+	\end{verbatim}
+	
 	\pagebreak
 	
 	\item \label{3b} {\itshape Using a loop invariant, prove that your algorithm is correct. Be sure that your loop invariant and proof covers the initialization, maintenance, and termination conditions.}
+	\\ \\I don't know
 	\pagebreak
 	\end{enumerate}
 	
@@ -195,18 +211,19 @@ Hyperlinks for convenience:
 }
 	\begin{enumerate}
 	\item \label{4a} {\itshape Help Ron determine whether this code performs a correct binary search. If it does, prove to Hermione that the algorithm is correct. If it is not, state the bug(s), give line(s) of code that are correct, and then prove to Hermione that your fixed algorithm is correct.}
+	\\ \\ I don't know
 	\newpage
 	\phantom{} % create some blank text so that the second \newpage actually creates a second page
 	\newpage
 	
 	
 	\item \label{4b} {\itshape Hermione tells Ron that binary search is efficient because, at worst, it divides the remaining problem size in half at each step. In response Ron claims that four-nary search, which would divide the remaining array $A$ into fourths at each step, would be \textit{way more} efficient. Explain who is correct and why.}
+\\ \\ I don't know \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\I just wanted to add that I did not leave enough time to do this problem set. I had never used LaTeX before and I underestimated how long it would take me to learn some syntax. It does not reflect on me as a student and I promise to manage my time more efficiently in the future. Also in terms of citing, I used this URL to get the equation for the change of base formula: \\https://www.purplemath.com/modules/logrules5.htm
 	\pagebreak
 	\end{enumerate}
 
 	
 \end{enumerate}
-
 
 \end{document}
 
