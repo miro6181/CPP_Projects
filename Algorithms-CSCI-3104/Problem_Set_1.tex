@@ -1,0 +1,213 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage[]{algorithmicx}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headsep}{36pt}
+
+\usepackage{hyperref}
+
+
+
+\newcommand{\makenonemptybox}[2]{%
+%\par\nobreak\vspace{\ht\strutbox}\noindent
+\item[]
+\fbox{% added -2\fboxrule to specified width to avoid overfull hboxes
+% and removed the -2\fboxsep from height specification (image not updated)
+% because in MWE 2cm is should be height of contents excluding sep and frame
+\parbox[c][#1][t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+  \hrule width \hsize height 0pt
+  #2
+ }%
+}%
+\par\vspace{\ht\strutbox}
+}
+\makeatother
+
+\begin{document}
+
+\lhead{{\bf CSCI 3104, Algorithms \\ Problem Set 1} }
+\rhead{Name:  \fbox{Michael Rogers} \\ ID: \fbox{105667404} \\ {\bf Profs.\ Grochow \& Layer\\ Spring 2019, CU-Boulder}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\phantom{Test}
+
+\begin{small}
+\textit{Advice 1}:\ For every problem in this class, you must justify your answer:\ show how you arrived at it and why it is correct. If there are assumptions you need to make along the way, state those clearly.
+
+\vspace{-3mm} 
+\textit{Advice 2}:\ Verbal reasoning is typically insufficient for full credit. Instead, write a logical argument, in the style of a mathematical proof.
+\vspace{-4mm} 
+\end{small}
+
+\hrulefill
+
+Hyperlinks for convenience:
+\begin{tabular}{ll}
+\ref{1a}
+\ref{1b}
+\ref{1c}
+\ref{1d}
+\ref{1e}
+\ref{1f}
+\ref{1g}
+\ref{1h}
+\ref{1i}
+\ref{1j}
+&
+\ref{stocks:a}
+\ref{stocks:b}
+\ref{stocks:c}
+\ref{stocks:d}
+\ref{stocks:e} \\
+\ref{3a}
+\ref{3b} &
+\ref{4a}
+\ref{4b} 
+\end{tabular}
+
+
+\begin{enumerate}
+
+	\item	{\itshape (10 pts total) For each of the following claims, determine whether they are true or false. Justify your determination (show your work). If the claim is false, state the correct asymptotic relationship as $O$, $\Theta$, or $\Omega$.}
+
+\begin{enumerate}
+\item \label{1a} $n^2 + 2n - 4 = \Omega(n^2)$
+\makenonemptybox{3.5in}{By L'Hospital's Rule: $$\lim_{n\to\infty}\frac{n^2 + 2n -4}{n^2} = \lim_{n\to\infty}\frac{2n+2}{2n} =  \lim_{n\to\infty}\frac{2}{2} = 1$$ This means $n^2 + 2n - 4 = O(n^2)$ by the limit test. If we reverse this we get: $$\lim_{n\to\infty}\frac{n^2}{n^2 + 2n -4} = \lim_{n\to\infty}\frac{2n}{2n+2} =  \lim_{n\to\infty}\frac{2}{2} = 1$$ \\ Which means $n^2 = O(n^2+ 2n - 4)$. \\ \\This means that $n^2+2n-4 \geq n^2$ which implies $n^2 +2n -4 = \Omega(n^2)$ Thus proving the statement true.% answer goes here. Even when there is a box present, you can use more space by increasing the size of the box. If you do so, please use \pagebreak somewhere shortly after so that subsequent problems line up well
+}
+\pagebreak
+
+\item \label{1b} $10^{100} = \Theta(1)$ \\ \\
+\makenonemptybox{3in}{Big-O: $$\lim_{n\to\infty}\frac{10^{100}}{1} = 10^{100} \Rightarrow 10^{100} = O(1)$$ \\ \\ Big-$\Omega$: $$\lim_{n\to\infty}\frac{1}{10^{100}} = \frac{1}{10^{100}} \Rightarrow 10^{100} = O(10^{100}) \Rightarrow 10^{100} = \Omega(1)$$ \\ \\ Since Big-O and Big-$\Omega$ are equal, then the means that $10^{100} = \Theta(1)$}
+% Your answer goes here. Here's an example where we didn't bother with a box because the space just goes to the end of the page. Same comment as before about extra space applies.
+%\pagebreak
+
+\item \label{1c} $\ln^2 n = \Theta(\lg^2 n)$
+\makenonemptybox{2.5in}{}
+\pagebreak
+
+\item \label{1d} $2^n = \Theta(2^{n+7})$
+%\makenonemptybox{2.5in}{}
+\pagebreak
+
+\pagebreak
+\item \label{1e} $n+1 = O(n^4)$
+\makenonemptybox{2.5in}{}
+
+\item \label{1f} $1 = O(1/n)$
+\makenonemptybox{2.5in}{}
+
+\pagebreak
+\item \label{1g} $3^{3n} = \Theta(9^n)$
+\makenonemptybox{2.5in}{}
+
+\item \label{1h} $2^{2n} = O(2^n)$
+\makenonemptybox{2.5in}{}
+
+\pagebreak
+\item \label{1i} $2^{n+1} = \Theta(2^{n \lg n})$
+\makenonemptybox{2.5in}{}
+
+\item \label{1j} $\sqrt{n} = O(\lg n)$
+\makenonemptybox{2.5in}{}
+
+\end{enumerate}
+
+	\item {\itshape (15 pts) Professor Dumbledore needs your help optimizing the Hogwarts budget. You'll be given an array $A$ of exchange rates for muggle money and wizard coins, expressed as integers. Your task is help Dumbledore maximize the payoff by buying at some time $i$ and selling at a future time $j>i$, such that both $A[j] > A[i]$ and the corresponding difference of $A[j]-A[i]$ is as large as possible.
+	
+	For example, let $A=[8, 9, 3, 4, 14, 12, 15, 19, 7, 8, 12, 11]$. If we buy stock at time $i=2$ with $A[i]=3$ and sell at time $j=7$ with $A[j]=19$, Hogwarts gets in income of $19-3=16$ coins. }
+	
+	\begin{enumerate}
+	\item \label{stocks:a} {\itshape Consider the pseudocode below that takes as input an array $A$ of size $n$:
+	\begin{small}
+	\begin{verbatim}
+	makeWizardMoney(A) : 
+	    maxCoinsSoFar = 0
+	    for i = 0 to length(A)-1 {
+	        for j = i+1 to length(A) {
+	            coins = A[j] - A[i]
+	            if (coins > maxCoinsSoFar) { maxCoinsSoFar = coins }
+	    }}
+	    return maxCoinsSoFar
+	\end{verbatim}
+	\end{small}
+	What is the running time complexity of the procedure above? Write your answer as a $\Theta$ bound in terms of $n$.}
+	\pagebreak
+
+	\item \label{stocks:b} {\itshape Explain (1--2 sentences) under what conditions on the contents of $A$ the {\tt makeWizardMoney} algorithm will return 0 coins.}
+	\makenonemptybox{2.5in}{}
+	
+	\item \label{stocks:c} {\itshape Dumbledore knows you know that {\tt makeWizardMoney} is wildly inefficient. With a wink, he suggests writing a function to make a new array $M$ of size $n$ such that
+	\begin{align}
+	M[i] = \min_{0\,\leq\, j\, \leq \,i} ~A[j] \nonumber \enspace .
+	\end{align}
+	That is, $M[i]$ gives the minimum value in the subarray of $A[0 .. i]$.
+	
+	Write pseudocode to compute the array $M$. What is the running time complexity of your pseudocode? Write your answer as a $\Theta$ bound in terms of $n$.}
+	\pagebreak
+	
+	\item \label{stocks:d} {\itshape Use the array $M$ computed from (\ref{stocks:c}) to compute the maximum coin return in time $\Theta(n)$.}
+	\makenonemptybox{2in}{}
+	
+	\item \label{stocks:e} {\itshape Give Dumbledore what he wants:\ rewrite the original algorithm in a way that combine parts (\ref{stocks:b})--(\ref{stocks:d}) to avoid creating a new array $M$.}
+	\pagebreak
+	\end{enumerate}
+
+
+		\renewcommand{\headsep}{36pt}
+
+	\item {\itshape (15 pts) Consider the problem of linear search. The input is a sequence of $n$ numbers $A=\langle a_{1},a_{2},\dots,a_{n}\rangle$ and a target value $v$. The output is an index $i$ such that $v=A[i]$ or the special value NIL if $v$ does not appear in $A$.}
+	
+	\begin{enumerate}
+	\item \label{3a} {\itshape Write pseudocode for a simple linear search algorithm, which will scan through the input sequence $A$, looking for $v$.}
+	\pagebreak
+	
+	\item \label{3b} {\itshape Using a loop invariant, prove that your algorithm is correct. Be sure that your loop invariant and proof covers the initialization, maintenance, and termination conditions.}
+	\pagebreak
+	\end{enumerate}
+	
+	
+	
+	\item {\itshape (20 pts) Ron and Hermione are arguing about binary search. Hermione writes the following pseudocode on the board, which she claims implements a binary search for a target value {\tt v} within input array {\tt A} containing $n$ elements.
+	\begin{small}
+	\begin{verbatim}
+	bSearch(A, v) {
+	   return binarySearch(A, 1, n-1, v)
+	}
+	
+	binarySearch(A, l, r, v) {
+	   if l <= r then return -1
+	   p = floor( (l + r)/2 )
+	   if A[p] == v then return p
+	   if A[p] < v then
+	     return binarySearch(A, p+1, r, v)
+	     else return binarySearch(A, l, p-1, v)
+	}
+	\end{verbatim}
+	\end{small}
+}
+	\begin{enumerate}
+	\item \label{4a} {\itshape Help Ron determine whether this code performs a correct binary search. If it does, prove to Hermione that the algorithm is correct. If it is not, state the bug(s), give line(s) of code that are correct, and then prove to Hermione that your fixed algorithm is correct.}
+	\newpage
+	\phantom{} % create some blank text so that the second \newpage actually creates a second page
+	\newpage
+	
+	
+	\item \label{4b} {\itshape Hermione tells Ron that binary search is efficient because, at worst, it divides the remaining problem size in half at each step. In response Ron claims that four-nary search, which would divide the remaining array $A$ into fourths at each step, would be \textit{way more} efficient. Explain who is correct and why.}
+	\pagebreak
+	\end{enumerate}
+
+	
+\end{enumerate}
+
+
+\end{document}
+
+
