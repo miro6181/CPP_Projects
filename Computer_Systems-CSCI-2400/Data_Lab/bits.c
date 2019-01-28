@@ -175,8 +175,11 @@ NOTES:
  *   Rating: 1
  */
 int bitOr(int x, int y) {
-  ~(~x & ~y);
-  return 2;
+  // 6 = 0110, 5 = 0101 -> ~6 = 1001,  ~5 = 1010
+  //  1001(~6)
+  // &1010(~5)
+  // =1000 -> ~1000 = 0111 = 7
+  return ~(~x & ~y);
 }
 /*
  * evenBits - return word with all even-numbered bits set to 1
@@ -185,7 +188,17 @@ int bitOr(int x, int y) {
  *   Rating: 1
  */
 int evenBits(void) {
-  return 2;
+  //Word = 10101010
+  int word = 0x55;
+  int mask = 0x55;
+  //Left shift adds the empty digit spaces so word becomes 1010101000000000
+  //and when you add the 0x55 it makes it 1010101010101010
+  word = word << 8;
+  word = word | mask;
+  //Does the same for 32 bits
+  word = word << 16 word;
+  word = word | mask;
+  return word;
 }
 /*
  * minusOne - return a value of -1
@@ -194,7 +207,8 @@ int evenBits(void) {
  *   Rating: 1
  */
 int minusOne(void) {
-  return 2;
+  //0x0 = 00000000 ~0x0 = 11111111 which results in an overflow to -1
+  return ~0x0;
 }
 /*
  * allEvenBits - return 1 if all even-numbered bits in word set to 1
@@ -204,7 +218,16 @@ int minusOne(void) {
  *   Rating: 2
  */
 int allEvenBits(int x) {
-  return 2;
+  //Creates a tester mask and then compares it to x then uses an xor to
+  //see if all the even bits are actually 1
+  //Creates 1010101010101010
+  int even = (0x55 << 8) | 0x55;
+  //Extends it to 32 bits
+  int thirtyTwoEven = (even << 16) + even;
+  int compare = thirtyTwoEven & x;
+  int result = compare ^ thirtyTwoEveneven;
+
+  return !result;
 }
 /*
  * anyOddBit - return 1 if any odd-numbered bit in word set to 1
@@ -214,8 +237,16 @@ int allEvenBits(int x) {
  *   Rating: 2
  */
 int anyOddBit(int x) {
-    //Use an & operation with x and 0xAAAAAAA... for 32 bits
-    return 2;
+    //Makes 32 bit 0101010101010101...
+    int odd = (0xAA << 8) | 0xAA;
+    //32 bits
+    int thirtyTwoOdd = (odd << 16) + odd;
+    //Compares with x and then does the same thing as allEvenBits but
+    //does another logical not operation on it and exclues the xor so
+    //it does any instead of all.
+    int compare = thirtyTwoOdd & x;
+    int result = !(!compare);
+    return result;
 }
 /*
  * byteSwap - swaps the nth byte and the mth byte
@@ -227,8 +258,14 @@ int anyOddBit(int x) {
  *  Rating: 2
  */
 int byteSwap(int x, int n, int m) {
-    // << by m
-    return 2;
+  //Shift n and m by 3 which is the same as multiplying each by 8
+  n = n << 3;
+  m = m << 3;
+  //Gives 11111111
+  int z = 0xFF & ((x >> n) ^ (x >> m));
+  x = x ^ (z << n);
+  x = x ^ (z << m);
+  return x;
 }
 /*
  * addOK - Determine if can compute x+y without overflow
@@ -239,7 +276,14 @@ int byteSwap(int x, int n, int m) {
  *   Rating: 3
  */
 int addOK(int x, int y) {
-  return 2;
+  //Sum x and y and then compare x and y with that sum using an xor
+  int sum = x + y;
+
+  int sumX = x ^ sum;
+  int sumY = y ^ sum;
+
+  //sumX and sumY will only return a negative number if there is overflow so we shift the sign
+  return !((sumX & sumY) >> 31);
 }
 /*
  * conditional - same as x ? y : z
@@ -249,7 +293,14 @@ int addOK(int x, int y) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  return 2;
+  int a = !x;
+  int b = ~a + 1;
+  int c = ~b;
+
+  int comp_1 = z & b;
+  int comp_2 = y & c;
+
+  return comp_1 + comp_2;
 }
 /*
  * isAsciiDigit - return 1 if 0x30 <= x <= 0x39 (ASCII codes for characters '0' to '9')
@@ -261,7 +312,7 @@ int conditional(int x, int y, int z) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  return 2;
+  //I have a vauge idea but was overall confused by this quesiton.
 }
 /*
  * replaceByte(x,n,c) - Replace byte n in x with c
@@ -273,7 +324,7 @@ int isAsciiDigit(int x) {
  *   Rating: 3
  */
 int replaceByte(int x, int n, int c) {
-  return 2;
+  //I was confused by this one and isAsciiDigit.
 }
 /* reverseBits - reverse the bits in a 32-bit integer,
               i.e. b0 swaps with b31, b1 with b30, etc
@@ -288,6 +339,8 @@ int replaceByte(int x, int n, int c) {
  *  Rating: 4
  */
 int reverseBits(int x) {
+  //Had an idea of how to reverse by swapping different sizes but didn't have
+  //time to implement.
   return 0;
 }
 /*
@@ -301,7 +354,17 @@ int reverseBits(int x) {
  *   Rating: 4
  */
 int satAdd(int x, int y) {
-  return 2;
+  //Sums x and y and then tests x and y against that sum, then compares those two
+  //to determine overflow and then lastly returns 1 or 0 depending on the overflow.
+  int sum = x + y;
+
+  int x_sum = sum ^ x;
+  int y_sum = sum ^ y;
+  int eval = x_sum & y_sum;
+  int overFlow = eval >> 31;
+
+
+  return (sum >> overFlow) ^ (overFlow << 31);
 }
 /*
  * Extra credit
