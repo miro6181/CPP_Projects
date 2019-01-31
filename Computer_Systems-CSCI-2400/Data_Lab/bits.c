@@ -20,6 +20,7 @@
  * STEP 1: Read the following instructions carefully.
  */
 
+
 You will provide your solution to the Data Lab by
 editing the collection of functions in this source file.
 
@@ -188,15 +189,16 @@ int bitOr(int x, int y) {
  *   Rating: 1
  */
 int evenBits(void) {
+  int word, mask;
   //Word = 10101010
-  int word = 0x55;
-  int mask = 0x55;
+  word = 0x55;
+  mask = 0x55;
   //Left shift adds the empty digit spaces so word becomes 1010101000000000
   //and when you add the 0x55 it makes it 1010101010101010
   word = word << 8;
   word = word | mask;
   //Does the same for 32 bits
-  word = word << 16 word;
+  word = word << 16 | word;
   word = word | mask;
   return word;
 }
@@ -218,14 +220,15 @@ int minusOne(void) {
  *   Rating: 2
  */
 int allEvenBits(int x) {
+  int even, thirtyTwoEven, compare, result;
   //Creates a tester mask and then compares it to x then uses an xor to
   //see if all the even bits are actually 1
   //Creates 1010101010101010
-  int even = (0x55 << 8) | 0x55;
+  even = (0x55 << 8) | 0x55;
   //Extends it to 32 bits
-  int thirtyTwoEven = (even << 16) + even;
-  int compare = thirtyTwoEven & x;
-  int result = compare ^ thirtyTwoEveneven;
+  thirtyTwoEven = (even << 16) + even;
+  compare = thirtyTwoEven & x;
+  result = compare ^ thirtyTwoEven;
 
   return !result;
 }
@@ -237,15 +240,16 @@ int allEvenBits(int x) {
  *   Rating: 2
  */
 int anyOddBit(int x) {
+    int odd, thirtyTwoOdd, compare, result;
     //Makes 32 bit 0101010101010101...
-    int odd = (0xAA << 8) | 0xAA;
+    odd = (0xAA << 8) | 0xAA;
     //32 bits
-    int thirtyTwoOdd = (odd << 16) + odd;
+    thirtyTwoOdd = (odd << 16) + odd;
     //Compares with x and then does the same thing as allEvenBits but
     //does another logical not operation on it and exclues the xor so
     //it does any instead of all.
-    int compare = thirtyTwoOdd & x;
-    int result = !(!compare);
+    compare = thirtyTwoOdd & x;
+    result = !(!compare);
     return result;
 }
 /*
@@ -258,11 +262,12 @@ int anyOddBit(int x) {
  *  Rating: 2
  */
 int byteSwap(int x, int n, int m) {
+  int z;
   //Shift n and m by 3 which is the same as multiplying each by 8
   n = n << 3;
   m = m << 3;
   //Gives 11111111
-  int z = 0xFF & ((x >> n) ^ (x >> m));
+  z = 0xFF & ((x >> n) ^ (x >> m));
   x = x ^ (z << n);
   x = x ^ (z << m);
   return x;
@@ -276,11 +281,12 @@ int byteSwap(int x, int n, int m) {
  *   Rating: 3
  */
 int addOK(int x, int y) {
+  int sum, sumX, sumY;
   //Sum x and y and then compare x and y with that sum using an xor
-  int sum = x + y;
+  sum = x + y;
 
-  int sumX = x ^ sum;
-  int sumY = y ^ sum;
+  sumX = x ^ sum;
+  sumY = y ^ sum;
 
   //sumX and sumY will only return a negative number if there is overflow so we shift the sign
   return !((sumX & sumY) >> 31);
@@ -293,12 +299,13 @@ int addOK(int x, int y) {
  *   Rating: 3
  */
 int conditional(int x, int y, int z) {
-  int a = !x;
-  int b = ~a + 1;
-  int c = ~b;
+  int a, b, c, comp_1, comp_2;
+  a = !x;
+  b = ~a + 1;
+  c = ~b;
 
-  int comp_1 = z & b;
-  int comp_2 = y & c;
+  comp_1 = z & b;
+  comp_2 = y & c;
 
   return comp_1 + comp_2;
 }
@@ -354,14 +361,15 @@ int reverseBits(int x) {
  *   Rating: 4
  */
 int satAdd(int x, int y) {
+  int sum, x_sum, y_sum, eval, overFlow;
   //Sums x and y and then tests x and y against that sum, then compares those two
   //to determine overflow and then lastly returns 1 or 0 depending on the overflow.
-  int sum = x + y;
+  sum = x + y;
 
-  int x_sum = sum ^ x;
-  int y_sum = sum ^ y;
-  int eval = x_sum & y_sum;
-  int overFlow = eval >> 31;
+  x_sum = sum ^ x;
+  y_sum = sum ^ y;
+  eval = x_sum & y_sum;
+  overFlow = eval >> 31;
 
 
   return (sum >> overFlow) ^ (overFlow << 31);
