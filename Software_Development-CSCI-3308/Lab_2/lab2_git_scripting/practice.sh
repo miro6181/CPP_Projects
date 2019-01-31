@@ -1,6 +1,6 @@
 #!/bin/bash
 # Author : Michael Rogers
-# Date: 1/1/2019
+# Date: 1/31/2019
 # Script follows here:
 echo "Enter a number: "
 read numOne
@@ -14,4 +14,4 @@ echo "The product is: $prod"
 echo "File Name: $0"
 echo "Command Line Argument 1: $1"
 
-grep $1 $2
+grep "@geocities.com" $1
