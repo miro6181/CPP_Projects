@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage[]{algorithmicx}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\setlength{\headsep}{36pt}
+
+\usepackage{hyperref}
+
+
+
+\newcommand{\makenonemptybox}[2]{%
+%\par\nobreak\vspace{\ht\strutbox}\noindent
+\item[]
+\fbox{% added -2\fboxrule to specified width to avoid overfull hboxes
+% and removed the -2\fboxsep from height specification (image not updated)
+% because in MWE 2cm is should be height of contents excluding sep and frame
+\parbox[c][#1][t]{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+  \hrule width \hsize height 0pt
+  #2
+ }%
+}%
+\par\vspace{\ht\strutbox}
+}
+\makeatother
+
+\begin{document}
+
+\lhead{{\bf CSCI 3104, Algorithms \\ Problem Set 2} }
+\rhead{Name: \fbox{Michael Rogers} \\ ID: \fbox{105667404} \\ {\bf Profs.\ Grochow \& Layer\\ Spring 2019, CU-Boulder}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\phantom{Test}
+
+%\hrulefill
+
+Hyperlinks for convenience:
+\begin{tabular}{lll}
+\ref{1a} \ref{1b} \ref{1c} \ref{1d} &
+\ref{2} &
+\ref{3a} \ref{3b} \ref{3c} \ref{3d}
+\end{tabular}
+
+\begin{enumerate}
+
+\item (20 pts total) {\itshape Solve the following recurrence relations using
+any of the following methods:\ unrolling, tail recursion, recurrence tree
+(include tree diagram), or expansion. Each case, show your work.}
+
+\begin{enumerate}
+\item \label{1a} $T(n) = T(n-4) + C\,n$ if $n>1$, and $T(n) = C$ otherwise
+\makenonemptybox{4in}{Unrolling Gives us: \\ \\ $T(n-4) = T(n-8) + C(n-4)$ \\ $T(n-8) = T(n-12) + C(n-8)$ \\ $T(n-12) = T(n-16) + C(n-12)$ \\. \\. \\. \\$T(4) = T(0) + 4C$ \\ $T(n) = T(0) + C(4+8+12+...+n)$ \\ $T(n) = C + C(1+2+3+...+\frac{n}{4})$ \\ $T(n) = C + 4C(\frac{n}{4})(\frac{\frac{n}{4} + 1}{2}) \Rightarrow C(1+n(\frac{n+4}{8})$ \\ \\$\Rightarrow T(n) = \Theta(n^2)$}
+\pagebreak
+
+\item \label{1b} $T(n) = 3T(n-2) + 1$ if $n>1$, and $T(n) = 3$ otherwise
+\makenonemptybox{2.5in}{}
+\pagebreak
+
+\item \label{1c} $T(n) = T(n-1)+2^{n}$ if $n>1$, and $T(1) = 3$
+\makenonemptybox{2.5in}{}
+
+\item \label{1d} $T(n) = T(n^{1/2}) + 1$ if $n>2$ , and $T(n) = 0$ otherwise
+\makenonemptybox{2.5in}{}
+\end{enumerate}
+
+\pagebreak
+
+\item \label{2} (10 pts) {\itshape Consider the following function:}
+\begin{small}
+\begin{verbatim}
+def foo(n) {
+     if (n > 1) {
+        print( ''hello'' )
+        foo(n/3)
+        foo(n/3)
+        foo(n/3)
+     }
+}
+\end{verbatim}
+\end{small}
+{\itshape In terms of the input $n$, determine how many times is ``hello''
+printed. Write down a recurrence and solve using the Master method.}
+%\makenonemptybox{5.0in}{}
+\\ \\ \\ I don't know
+\pagebreak
+
+
+%\renewcommand{\headsep}{36pt}
+\item (30 pts) {\itshape Professor Flitwick asks you to help him with some
+arrays that are slumped. An array $A$ is slumped if $A[1..i]$ has the property
+that, for some $C>0$, $A[j+1] = A[j] - C$ for $1\leq j < i$, and 
+$A[i..n]$ has the property that, for some $D>0$ where $C\neq D$,
+$A[j+1] = A[j] + D$ for $i\leq j < n$.  Using his wand, Flitwick writes the
+following slumped array on
+the board $A=[7, 3, -1, -5, 0, 10, 15, 20, 25]$, as an example.}
+	
+\begin{enumerate}
+    \item \label{3a} {\itshape Flitwick found that one of his slumped arrays
+had an identical adjacent value (i.e., $A[j] = A[j+1]$) and no longer trusts
+any of his slumped arrays. Write a recursive algorithm that takes
+asymptotically sub-linear time to ensure that there are no identical adjacent
+elements in $A$. }
+\\ \\ \\ I don't know
+\pagebreak
+\item \label{3b} {\itshape Prove that your algorithm is correct. (Hint: prove
+that your algorithm's correctness follows from the correctness of another
+correct algorithm we already know.) }
+\\ \\ \\ I don't know
+\pagebreak
+\item \label{3c} {\itshape Now consider the \textit{multi-slumped}
+generalization, in which the array contains $k$ local minima, i.e., it contains
+$k$ subarrays, each of which is itself a slumped array. Let $k=2$ and prove
+that your algorithm can fail on such an input.}
+\\ \\ \\ I don't know
+
+\pagebreak
+\item \label{3d} {\itshape Suppose that $k=2$ and we can guarantee that neither
+local minimum is closer than $n/3$ positions to the middle of the array, and
+that the ``joining point'' of the two singly-slumped subarrays lays in the
+middle third of the array.  Now write an algorithm that tests $A$ for
+identical adjacent values in sublinear time. Prove that your algorithm is
+correct, give a recurrence relation for its running time, and solve for
+its asymptotic behavior.}
+\\ \\ \\ I don't know
+\end{enumerate}
+	
+\end{enumerate}
+
+\end{document}
+
+
