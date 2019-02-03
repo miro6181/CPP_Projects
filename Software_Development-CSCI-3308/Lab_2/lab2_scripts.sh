@@ -32,3 +32,9 @@ grep '@geocities.com' regex_practice.txt >> email_results.txt
 # greps the first command line argument into regex_practice.txt then writes
 # the result to command_results.txt.
 grep $1 regex_practice.txt >> command_results.txt
+
+git add phone_results.txt
+git add command_results.txt
+git add email_results.txt
+
+git commit 
