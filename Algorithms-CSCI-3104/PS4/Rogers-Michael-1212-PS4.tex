@@ -1,0 +1,132 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+
+
+\begin{document}
+
+\lhead{{\bf CSCI 3104 \\ Problem Set 4} }
+\rhead{Name: \fbox{Michael Rogers} \\ ID: \fbox{105667404} \\ {\bf Profs.\ Grochow \& Layer\\ Spring 2019, CU-Boulder}}
+\renewcommand{\headrulewidth}{0.5pt}
+\phantom{Test}
+
+
+\vspace{-3mm}
+
+\begin{enumerate}
+
+\item Suppose that instead of a {\sl randomized} {\tt QuickSort} we implement
+an {\sl indecisive} {\tt QuickSort}, where the {\tt Partition} function
+alternates between the best and the worst cases. You may assume that {\tt IndecisivePartition} takes $O(n)$ time on a list of length $n$.
+
+\begin{enumerate}
+    \item (5 pts) Prove the correctness of this version of {\tt QuickSort}.
+    % YOUR ANSWER HERE
+    \pagebreak	
+    \item (5 pts) Give the recurrence relation for this version of {\tt
+    QuickSort} and solve for its asymptotic solution. Also, give some intuition
+    (in English) about how the indecisive {\tt Partition} algorithm changes the
+    running time of {\tt QuickSort}.
+    % YOUR ANSWER HERE
+    \pagebreak	
+\end{enumerate}
+	
+
+\item Consider the following algorithm that operates on a list of n integers:
+\begin{itemize}
+    \item Divide the $n$ values into $\frac{n}{2}$ pairss.
+    \item Find the max of each pair.
+    \item Repeat until you have the max value of the list
+\end{itemize}
+
+\begin{enumerate}
+    \item (2 pts) Show the steps of the above algorithm for the list $(25, 19, 9, 8, 2, 26, 21, 26, 31, 26, 3, 14)$.
+    % YOUR ANSWER HERE
+    \pagebreak	
+    \item (3 pts) Derive and prove a tight bound on the asymptotic runtime of this algorithm
+        % YOUR ANSWER HERE
+    \pagebreak	
+    \item (3 pts) Assuming you just ran the above algorithm, show that you can
+    use the result and all intermediate steps to find the 2nd largest number in
+    at most $\log_{2}n$ additional steps.
+    % YOUR ANSWER HERE
+    \pagebreak	
+    \item (2 pts) Show the steps for the algorithm in part c for the input in
+    part a.
+    % YOUR ANSWER HERE
+    \pagebreak	
+\end{enumerate}
+
+\item  Consider the following algorithm
+\begin{small}
+    \begin{verbatim}
+    SomeSort(A, k):
+        N = length(A)
+        for i in [0,..,n-k]
+            MergeSort(A,i,i+k-1)
+    \end{verbatim}
+\end{small}
+\begin{enumerate}
+    \item What assumption(s) must be true about the array {\tt A} such that 
+        {\tt SomeSort} can correctly sort {\tt A} given {\tt k}. 
+    % YOUR ANSWER HERE
+    \pagebreak	
+    \item Prove that your assumption(s) is/are necessary: that is, for 
+        {\bf any} array {\tt A} which violates your assumption(s), 
+        {\tt SomeSort} incorrectly sorts {\tt A}.
+    % YOUR ANSWER HERE
+    \pagebreak	
+    \item Prove that your assumption(s) from part a are sufficient. That is,
+        prove the correctness of {\tt SomeSort} under your assumption(s) from
+        part a.
+    % YOUR ANSWER HERE
+    \pagebreak	
+    \item Assuming that the assumption(s) from part a hold on {\tt A}, prove a
+        tight bound in terms of {\tt n} and {\tt k} on the worst-case runtime
+        of {\tt SomeSort}.
+    % YOUR ANSWER HERE
+    \pagebreak	
+\end{enumerate}
+
+\item A dynamic array is a data structure that can support an arbitrary number
+    of append (add to the end) operations by allocating additional memory when
+    the array becomes full. The standard process is to double (adds n more
+    space) the size of the array each time it becomes full. You cannot assume
+    that this additional space is available in the same block of memory as the
+    original array, so the dynamic array must be copied into a new array of
+    larger size. Here we consider what happens when we modify this process. The
+    operations that the dynamic array supports are 
+\begin{itemize}
+    \item {\tt Indexing A[i]}: returns the {\tt i}-th element in the array
+    \item {\tt Append(A,x)}: appends {\tt x} to the end of the array.  If the
+        array had {\tt n} elements in it (and we are using 0-based indexing),
+        then after {\tt Append(A, x)}, we have that {\tt A[n]} is {\tt x}.
+\end{itemize}
+
+\begin{enumerate}
+    \item Derive the amortized runtime of Append for a dynamic array that adds 
+        $n/2$ more space when it becomes full.
+    % YOUR ANSWER HERE
+    \pagebreak	
+    \item Derive the amortized runtime of Append for a dynamic array that adds
+        $n^2$ more space when it becomes full. 
+    % YOUR ANSWER HERE
+    \pagebreak	
+    \item Derive the amortized runtime of Append for a dynamic array that adds
+        some constant $C$ amount of space when it becomes full.
+    % YOUR ANSWER HERE
+    \pagebreak	
+\end{enumerate}
+
+\end{enumerate}
+\end{document}
