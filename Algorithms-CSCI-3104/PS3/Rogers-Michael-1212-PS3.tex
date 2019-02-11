@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textwidth}{6.5in}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{\baselineskip}
+
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{hyperref}
+
+\begin{document}
+
+\lhead{{\bf CSCI 3104, Algorithms \\ Problem Set 3} }
+\rhead{Name: \fbox{Michael Rogers} \\ ID: \fbox{105667404} \\ {\bf Profs.\ Grochow \& Layer\\ Spring 2019, CU-Boulder}}
+\renewcommand{\headrulewidth}{0.5pt}
+
+\phantom{Test}
+
+Hyperlinks for convenience:
+\begin{tabular}{lll}
+\ref{1a} \ref{1b} \ref{1c} &
+\ref{2a} \ref{2b} \ref{2c} &
+\ref{3a} \ref{3b} \ref{3c}
+\end{tabular}
+
+\begin{enumerate}
+
+	\item {\itshape (10 pts total) 
+	For parts~\eqref{1a} and~\eqref{1b}, justify your answers in terms of deterministic QuickSort, and for part~\eqref{1c}, refer to Randomized QuickSort. In both cases, refer to the versions of the algorithms given in the lecture notes for Week 3.}
+	\begin{enumerate}
+	\item {\itshape \label{1a} (3 points) What is the asymptotic running time of QuickSort when every element of the input $A$ is identical, i.e., for $1\leq i,j \leq n$, $A[i] = A[j]$? Prove your answer is correct.}
+	\\ \\ \\ I don't know
+	\pagebreak
+	
+	\item {\itshape \label{1b} (3 points) Let the input array $A$ be $[2, 1, -1, 4, 5, -4, 6, -3, 3, 0]$. What is the number of times a comparison is made to the element with value $-3$ (note the minus sign)?}
+	\\ \\ \\ I don't know
+	\pagebreak
+	
+	\item {\itshape \label{1c} (4 points) How many calls are made to {\tt random-int} in (i) the worst case and (ii) the best case? Give your answers in asymptotic notation.}
+	\\ \\ \\ I don't know
+	\pagebreak
+	
+	\end{enumerate}
+
+	\item {\itshape (20 pts total) Professor Flitwick needs your help. He gives you an array $A$ consisting of $n$ integers $A[1], A[2], \dots , A[n]$ and asks you to output a two-dimensional $n\times n$ array $B$ in which $B[i,j]$ (for $i<j$) contains the sum of array elements $A[i]$ through $A[j]$, i.e., $B[i,j] = A[i]+A[i+1]+\dots+A[j]$. (The value of array element $B[i,j]$ is left unspecified whenever $i\geq j$, so it doesn't matter what the output is for these values.)
+	
+	Flitwick suggests the following simple algorithm to solve this problem:
+	%
+	\begin{small}
+	\begin{verbatim}
+	flitwickSolve(A) {
+	   for i = 1 to n {
+	      for j = i+1 to n {
+	         s = sum(A[i..j])       // look very closely here
+	         B[i,j] = s
+	}}}
+	\end{verbatim}
+	\end{small}}
+	
+	\begin{enumerate}
+	\item {\itshape \label{2a} (5 points) Choose a function $f$ such that $\Omega(f(n))$ serves as a bound on the running time of this algorithm, and prove that this is the case---that is, prove that the worst-case running time is at least $\Omega(f(n))$ on inputs of size $n$. }
+	\\ \\ \\ I don't know
+	\pagebreak	
+
+	\item {\itshape \label{2b} (5 points) For this same function $f$ you chose in part~\ref{2a}, show that the running time of the algorithm on any input of size $n$ is also $O(f(n))$. (This shows an asymptotically tight bound of $\Theta(f(n))$ on the running time.)}
+		\\ \\ \\ I don't know
+\pagebreak
+	
+	\item {\itshape \label{2c} (10 points) Although Flitwick's algorithm is a natural way to solve the problem---after all, it just iterates through the relevant elements of $B$, filling in a value for each---it contains some highly unnecessary sources of inefficiency. Give an algorithm that solves this problem in time $O(f(n)/n)$ (asymptotically faster than before) and prove its correctness. (Recall the class conventions on what is required when we ask you to ``give an algorithm.'') }
+		\\ \\ \\ I don't know
+		\pagebreak
+		\end{enumerate}
+		
+	\item {\itshape (30 pts total) 
+	The Dementors have captured $n$ prisoners, of dubious morals and dubious reliability. The Ministry of Magic needs your help to identify which prisoners can be relied on to tell the truth, and which cannot. To this end, they have developed a spell that can be cast on a pair of prisoners at a time. When the spell is cast, the two prisoners each say whether the other prisoner is truthful or a liar. A truthful prisoner always gives the correct answer---that is, correctly identifies whether the \emph{other} prisoner is truthful or a liar---but anything one of the lying prisoners says cannot be trusted. That is, lying prisoners can lie whenever they want, but they \emph{don't} necessarily always make false statements. Furthermore, the spell has the useful property that if it is cast on the same two prisoners repeatedly, they will always give the same answers they gave initially (hence why a spell is needed).
+	
+	You quickly notice that there are four possible outcomes to the spell, when cast on prisoners $i$ and $j$:
+
+
+	\begin{small}
+	\begin{center}
+	\begin{tabular}{ccll}
+	prisoner $i$ says & prisoner $j$ says & &  \\
+	\hline
+	``$j$ is a liar'' & ``$i$ is a liar'' & $\implies$ & at least one is a liar \\
+	``$j$ is a liar'' & ``$i$ is truthful'' & $\implies$ & at least one is a liar \\
+	``$j$ is truthful'' & ``$i$ is a liar'' & $\implies$ & at least one is a liar \\
+	``$j$ is truthful'' & ``$i$ is truthful'' & $\implies$ & both truthful, or both liars \\
+	\end{tabular}
+	\end{center}
+	\end{small}}
+	
+	\begin{enumerate}
+	\item {\itshape \label{3a} (10 points) Prove that if $n/2$ or more prisoners are liars, the Ministry cannot necessarily determine which prisoners are truthful using \emph{any} strategy based on this kind of pairwise test. Assume a worst-case scenario in which the lying prisoners contain a psychic link that they can use to collectively conspire to fool the Ministry.}
+	\\ \\ \\ I don't know	
+	\pagebreak
+	
+	\item {\itshape \label{3b} (12 points) Suppose the Ministry knows that strictly more than $n/2$ of the prisoners are truthful, but not which ones. Prove that $\lfloor n/2\rfloor$ pairwise tests are sufficient to reduce the problem to one of nearly half the size.}
+	\\ \\ \\ I don't know
+	\pagebreak
+	
+	\item {\itshape \label{3c} (8 points) Now, under the same assumptions as part~\eqref{3b}, prove that all of the truthful prisoners can be identified with $\Theta(n)$ pairwise tests. Give and solve the recurrence (as always, in $O$ or $\Theta$ notation) that describes the number of tests.}
+	\\ \\ \\ I don't know
+	\pagebreak
+
+	\end{enumerate}
+	
+
+
+\end{enumerate}
+
+
+\end{document}
