@@ -2,3 +2,5 @@ Why make trillions when we could make... billions?
 1 2 4 8 16 32
 0 273
 5 15
+eeedbc
+1 2 6 5 3 4
