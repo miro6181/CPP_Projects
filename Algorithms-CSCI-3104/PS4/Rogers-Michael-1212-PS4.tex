@@ -20,6 +20,7 @@
 \renewcommand{\headrulewidth}{0.5pt}
 \phantom{Test}
 
+Quick links: \ref{1a} \ref{1b} $\qquad$ \ref{2a} \ref{2b} \ref{2c} \ref{2d} $\qquad$ \ref{3a} \ref{3b} \ref{3c} \ref{3d} $\qquad$ \ref{4a} \ref{4b} \ref{4c}
 
 \vspace{-3mm}
 
@@ -27,43 +28,43 @@
 
 \item Suppose that instead of a {\sl randomized} {\tt QuickSort} we implement
 an {\sl indecisive} {\tt QuickSort}, where the {\tt Partition} function
-alternates between the best and the worst cases. You may assume that {\tt IndecisivePartition} takes $O(n)$ time on a list of length $n$.
+alternates between the best and the worst cases. You may assume that {\tt IndecisivePartition} works correctly (that is, it produces a list in which the first $i$ elements are all $\leq x$, the $(i+1)$-st element is $x$, and the remaining elements are all $\geq x$, where $x$ is the pivot and $i$ is what it has to be) and takes $O(n)$ time on a list of length $n$.
 
 \begin{enumerate}
-    \item (5 pts) Prove the correctness of this version of {\tt QuickSort}.
-    % YOUR ANSWER HERE
+    \item \label{1a} (5 pts) Prove the correctness of this version of {\tt QuickSort}.
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
-    \item (5 pts) Give the recurrence relation for this version of {\tt
+    \item \label{1b} (5 pts) Give the recurrence relation for this version of {\tt
     QuickSort} and solve for its asymptotic solution. Also, give some intuition
     (in English) about how the indecisive {\tt Partition} algorithm changes the
     running time of {\tt QuickSort}.
-    % YOUR ANSWER HERE
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
 \end{enumerate}
 	
 
 \item Consider the following algorithm that operates on a list of n integers:
 \begin{itemize}
-    \item Divide the $n$ values into $\frac{n}{2}$ pairss.
+    \item Divide the $n$ values into $\frac{n}{2}$ consecutive pairs, starting from the beginning.
     \item Find the max of each pair.
     \item Repeat until you have the max value of the list
 \end{itemize}
 
 \begin{enumerate}
-    \item (2 pts) Show the steps of the above algorithm for the list $(25, 19, 9, 8, 2, 26, 21, 26, 31, 26, 3, 14)$.
-    % YOUR ANSWER HERE
+    \item \label{2a} (2 pts) Show the steps of the above algorithm for the list $(25, 19, 9, 8, 2, 26, 21, 26, 31, 26, 3, 14)$.
+    \\ \\ 1st Step: 1st Pairs list - $(25,19), (9,8), (2,26), (21,26), (31,26), (3, 14)$ \\ \\ 2nd Step: Max of each pair in a 1st pair list - $(25, 9, 26, 26, 31, 14)$ \\ \\ 3rd Step: 2nd Pairs list - $(25, 9), (26, 26), (31, 14)$ \\ \\ 4th Step: Max of each pair in a 2nd pair list - $(25, 26, 31)$ \\ \\ 5th Step: 3rd Pairs list - $(25,26) , (31,NULL)$ \\ \\ 6th Step: Max of each pair in a 3rd pair list - $(26, 31)$ \\ \\ 7th Step: Max of 4th pair list - $31$ \\ \\ \\ Therefore, the max element in the list is 31.
     \pagebreak	
-    \item (3 pts) Derive and prove a tight bound on the asymptotic runtime of this algorithm
-        % YOUR ANSWER HERE
+    \item \label{2b} (3 pts) Derive and prove a tight bound on the asymptotic runtime of this algorithm
+        \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
-    \item (3 pts) Assuming you just ran the above algorithm, show that you can
+    \item \label{2c} (3 pts) Assuming you just ran the above algorithm, show that you can
     use the result and all intermediate steps to find the 2nd largest number in
     at most $\log_{2}n$ additional steps.
-    % YOUR ANSWER HERE
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
-    \item (2 pts) Show the steps for the algorithm in part c for the input in
+    \item \label{2d} (2 pts) Show the steps for the algorithm in part c for the input in
     part a.
-    % YOUR ANSWER HERE
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
 \end{enumerate}
 
@@ -77,24 +78,24 @@ alternates between the best and the worst cases. You may assume that {\tt Indeci
     \end{verbatim}
 \end{small}
 \begin{enumerate}
-    \item What assumption(s) must be true about the array {\tt A} such that 
+    \item \label{3a} (5 pts) What assumption(s) must be true about the array {\tt A} such that 
         {\tt SomeSort} can correctly sort {\tt A} given {\tt k}. 
-    % YOUR ANSWER HERE
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
-    \item Prove that your assumption(s) is/are necessary: that is, for 
+    \item \label{3b} (6 pts) Prove that your assumption(s) is/are necessary: that is, for 
         {\bf any} array {\tt A} which violates your assumption(s), 
         {\tt SomeSort} incorrectly sorts {\tt A}.
-    % YOUR ANSWER HERE
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
-    \item Prove that your assumption(s) from part a are sufficient. That is,
+    \item \label{3c} (8 pts) Prove that your assumption(s) from part a are sufficient. That is,
         prove the correctness of {\tt SomeSort} under your assumption(s) from
         part a.
-    % YOUR ANSWER HERE
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
-    \item Assuming that the assumption(s) from part a hold on {\tt A}, prove a
+    \item \label{3d} (5 pts) Assuming that the assumption(s) from part a hold on {\tt A}, prove a
         tight bound in terms of {\tt n} and {\tt k} on the worst-case runtime
         of {\tt SomeSort}.
-    % YOUR ANSWER HERE
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
 \end{enumerate}
 
@@ -114,17 +115,17 @@ alternates between the best and the worst cases. You may assume that {\tt Indeci
 \end{itemize}
 
 \begin{enumerate}
-    \item Derive the amortized runtime of Append for a dynamic array that adds 
+    \item \label{4a} (5 pts) Derive the amortized runtime of Append for a dynamic array that adds 
         $n/2$ more space when it becomes full.
-    % YOUR ANSWER HERE
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
-    \item Derive the amortized runtime of Append for a dynamic array that adds
+    \item \label{4b} (6 pts) Derive the amortized runtime of Append for a dynamic array that adds
         $n^2$ more space when it becomes full. 
-    % YOUR ANSWER HERE
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
-    \item Derive the amortized runtime of Append for a dynamic array that adds
+    \item \label{4c} (5 pts) Derive the amortized runtime of Append for a dynamic array that adds
         some constant $C$ amount of space when it becomes full.
-    % YOUR ANSWER HERE
+    \\ \\ \\ \\ \\ \\ I don't know
     \pagebreak	
 \end{enumerate}
 
